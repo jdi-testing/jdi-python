@@ -1,20 +1,26 @@
 from JDI.jdi_assert.base.base_matcher import BaseMatcher
+import os
 
 
 class PropertyPath:
     def get_property_file(self):
-        name = "jdi.properties"
+        file_name_init = "jdi.properties"
+        file_name = file_name_init
         i = 0
+        dir_to_search = os.getcwd()
+        print(dir_to_search)
         while True and i < 100:
             try:
-                open(name)
-                return name
+                open(file_name)
+                return file_name
             except FileNotFoundError:
-                name = "../" + name
+                dir_to_search = os.path.dirname(dir_to_search)
+                file_name = os.path.join(dir_to_search, file_name_init)
                 i = i + 1
-        raise FileNotFoundError("There is not property file with name 'jdi.properties' in your project")
+        raise FileNotFoundError("There is not property file with name '" + file_name_init + "' in your project")
 
     path = property(get_property_file)
+
 
 class log:
     val = True
