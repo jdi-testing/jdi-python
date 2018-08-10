@@ -11,6 +11,7 @@ obj/
 packages/
 *.nupkg
 test-output/
+__pycache__/
 
 # ReSharper files
 *.DotSettings.user
