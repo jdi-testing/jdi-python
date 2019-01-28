@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "disable_existing_loggers": true,
+  "formatters": {
+    "simple": {
+      "class": "logging.Formatter",
+      "datefmt": "%I:%M:%S",
+      "format": "%(asctime)s %(levelname)s %(message)s"
+    }
+  },
+  "handlers": {
+    "file_handler": {
+      "level": "INFO",
+      "class": "logging.handlers.WatchedFileHandler",
+      "formatter": "simple",
+      "filename": "jdi.log",
+      "mode": "a",
+      "encoding": "utf-8"
+    }
+  },
+  "loggers": { },
+  "root": {
+    "handlers": ["file_handler"],
+    "level": "DEBUG"
+  }
+}
