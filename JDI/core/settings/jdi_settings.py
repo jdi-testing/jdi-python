@@ -3,8 +3,7 @@ import os
 
 
 class PropertyPath:
-    def get_property_file(self):
-        file_name_init = "jdi.properties"
+    def get_property_file(self, file_name_init="jdi.properties"):
         file_name = file_name_init
         i = 0
         dir_to_search = os.getcwd()
