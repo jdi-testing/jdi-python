@@ -10,4 +10,5 @@ class FrameTests(W3CInit):
     @staticmethod
     def test_fill():
         W3cSite.frame_page.try_it_button.click()
+        t = W3cSite.frame_page.i_frame.label_button.get_text()
         Assert.assert_equal(W3cSite.frame_page.i_frame.label_button.get_text(), "Click Me!")

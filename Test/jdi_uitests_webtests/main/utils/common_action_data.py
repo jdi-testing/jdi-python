@@ -35,7 +35,7 @@ class CommonActionsData:
             os.makedirs(dir_name)
 
         temp = tempfile.TemporaryFile(dir=dir_name, delete=False)
-        temp.write(bytes("mystring", 'utf-8'))
+        temp.write(b'mystring')
         CommonActionsData._path = temp.name
         CommonActionsData._name = temp.name.split("\\")[-1]
 
@@ -45,7 +45,7 @@ class CommonActionsData:
 
     @staticmethod
     def loose_focus():
-        JDISettings.get_driver_factory().get_driver().find_element(By.CLASS_NAME,"footer-content").click()
+        JDISettings.get_driver_factory().get_driver().find_element(By.CLASS_NAME, "footer-content").click()
 
     @staticmethod
     def check_action_throw_error(action, message):

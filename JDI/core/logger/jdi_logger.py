@@ -1,8 +1,10 @@
+from __future__ import with_statement
 import json
 import logging
 import logging.config
 
 from JDI.core.settings.jdi_settings import PropertyPath
+from io import open
 
 
 class JDILogger(object):

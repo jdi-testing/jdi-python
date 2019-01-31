@@ -27,6 +27,8 @@ class WebCascadeInit:
         while True:
             try:
                 res.append(next(iterator))
+            except TypeError:
+                return iterator
             except StopIteration:
                 return res
 
