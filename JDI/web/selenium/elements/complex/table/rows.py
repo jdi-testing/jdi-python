@@ -47,7 +47,7 @@ class Rows(TableLine):
                 raise ValueError("Value for 'get_row' should string or int")
             return res
         except Exception as ex:
-                raise Exception(val + " " + str(ex))
+                raise Exception(str(val) + " " + str(ex))
 
     #def get(self):
     #    return map(lambda self.get_headers())

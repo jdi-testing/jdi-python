@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 from JDI.web.selenium.elements.api_interact.find_element_by import By
 from JDI.web.selenium.elements.common.button import Button
 from JDI.web.selenium.elements.composite.web_page import WebPage

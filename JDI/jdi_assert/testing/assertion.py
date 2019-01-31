@@ -1,3 +1,5 @@
+from __future__ import division
+
 import time
 
 from JDI.core.settings.jdi_settings import log

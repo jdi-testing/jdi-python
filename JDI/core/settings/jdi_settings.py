@@ -1,5 +1,12 @@
+from __future__ import print_function
+
 from JDI.jdi_assert.base.base_matcher import BaseMatcher
 import os
+
+try:
+    FileNotFoundError
+except NameError:
+    FileNotFoundError = IOError
 
 
 class PropertyPath:
