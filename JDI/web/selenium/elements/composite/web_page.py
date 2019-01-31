@@ -1,5 +1,3 @@
-import time
-
 from JDI.core.interfaces.check_page_types import CheckPageTypes
 from JDI.core.settings.jdi_settings import JDISettings
 from JDI.core.utils.decorators import scenario
