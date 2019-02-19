@@ -11,7 +11,7 @@ class InitTests(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        WebSite.init(EpamJDISite, "chrome")
+        WebSite.init(EpamJDISite)
         WebSettings.logger.info("\nRun Tests from '%s' file" % cls.__name__)
         EpamJDISite.home_page.open()
         EpamJDISite.login_page.submit(User.default())
@@ -31,7 +31,7 @@ class W3CInit(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        WebSite.init(W3cSite, "chrome")
+        WebSite.init(W3cSite)
         WebSettings.logger.info("Run Tests")
         W3cSite.frame_page.open()
 

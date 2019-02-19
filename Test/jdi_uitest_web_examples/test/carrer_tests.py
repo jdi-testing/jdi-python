@@ -12,7 +12,7 @@ from Test.jdi_uitest_web_examples.main.site.epam.epam_site import EpamSite
 class CareerTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        WebSite.init(EpamSite, "chrome")
+        WebSite.init(EpamSite)
         WebSettings.logger.info("\nRun Tests from '%s' file" % cls.__name__)
 
     def setUp(self):

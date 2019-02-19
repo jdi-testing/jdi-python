@@ -10,6 +10,6 @@ class WebSite(Application):
         WebCascadeInit().init_site_page(site)
 
     @staticmethod
-    def init(site, driver_name):
-        WebSettings.use_driver(driver_name)
+    def init(site):
+        WebSettings.use_driver()
         WebCascadeInit().init_site_page(site)
