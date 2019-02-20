@@ -86,11 +86,11 @@ class GetElementModule(object):
         if frame is not None:
             self.switch_to_last_opened_window()
             res = search_context.find_element(element.avatar.frame_locator[0], element.avatar.frame_locator[1])
-            driver.switch_to_frame(res)
+            driver.switch_to.frame(res)
         return search_context.find_element(locator[0], locator[1]) if locator is not None else search_context
 
     def switch_to_last_opened_window(self):
-        self.get_driver().switch_to_window(self.get_driver().window_handles[-1])
+        self.get_driver().switch_to.window(self.get_driver().window_handles[-1])
 
     def set_web_element(self, web_element):
         self.web_element = web_element

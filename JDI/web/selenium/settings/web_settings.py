@@ -1,6 +1,7 @@
 from JDI.core.settings.jdi_settings import JDISettings
 from JDI.web.selenium.driver.selenium_driver_factory import SeleniumDriverFactory
 from JDI.core.logger.jdi_logger import JDILogger
+from selenium.webdriver.remote.command import Command
 
 
 class WebSettings(JDISettings):
@@ -25,7 +26,12 @@ class WebSettings(JDISettings):
 
     @staticmethod
     def quit_browser():
-        WebSettings.get_driver_factory().get_driver().quit()
+        driver = WebSettings.get_driver_factory().get_driver()
+        driver.quit()
+        try:
+            driver.execute(Command.CLOSE)
+        except Exception:
+            pass
 
     @staticmethod
     def get_driver():

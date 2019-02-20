@@ -38,6 +38,7 @@ class CommonActionsData:
         temp.write(b'mystring')
         CommonActionsData._path = temp.name
         CommonActionsData._name = temp.name.split("\\")[-1]
+        temp.close()
 
     @staticmethod
     def check_action(text, line_number=0):
