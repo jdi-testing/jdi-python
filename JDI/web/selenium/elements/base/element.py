@@ -10,13 +10,9 @@ class Element(BaseElement):
 
     def __init__(self, by_locator=None, web_element=None):
         self.parent = None
-        if by_locator is not None:
-            super(Element, self).__init__(by_locator=by_locator)
-        elif web_element is not None:
-            super(Element, self).__init__()
+        super(Element, self).__init__(by_locator=by_locator)
+        if web_element is not None:
             self.avatar.set_web_element(web_element)
-        else:
-            super(Element, self).__init__()
 
     def get_element(self):
         return self.avatar.get_element()
