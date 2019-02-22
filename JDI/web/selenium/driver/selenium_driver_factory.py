@@ -3,6 +3,7 @@ import os
 from selenium.webdriver.chrome.webdriver import WebDriver as ChromeDriver
 from selenium.webdriver.remote.webdriver import WebDriver as RemoteDriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
+from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 from JDI.web.selenium.driver.driver_types import DriverTypes
@@ -34,16 +35,20 @@ class SeleniumDriverFactory(object):
     def set_driver_options_and_capabilities(self, driver_name, options, capabilities,  executor):
         if driver_name == DriverTypes.chrome.name:
             self.options = ChromeOptions()
-            for arg in options: self.options.add_argument(arg)
+            self.add_options(options) if options else True
             if not capabilities and executor is not None:
                 self.capabilities = DesiredCapabilities.CHROME
         if driver_name == DriverTypes.firefox.name:
-            self.options = ChromeOptions()
-            for arg in options: self.options.add_argument(arg)
+            self.options = FirefoxOptions()
+            self.add_options(options) if options else True
             if not capabilities and executor is not None:
                 self.capabilities = DesiredCapabilities.FIREFOX
         if capabilities:
             self.capabilities = capabilities
+
+    def add_options(self, options):
+        for arg in options:
+            self.options.add_argument(arg)
 
     def register_chrome_driver(self):
         chrome_driver = WebDriverProvider.get_chrome_driver_path()
