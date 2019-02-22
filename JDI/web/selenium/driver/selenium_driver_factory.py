@@ -77,7 +77,7 @@ class SeleniumDriverFactory(object):
         driver.implicitly_wait(JDISettings.get_current_timeout_sec())
         return driver
 
-    def get_driver(self, options=[], capabilities={}, executor=None):
+    def get_driver(self, options=None, capabilities=None, executor=None):
         if self.current_driver is not None:
             return self.current_driver
         else:
