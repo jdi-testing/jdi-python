@@ -29,6 +29,11 @@ def action_logging_stop(action_name, values_list, el):
         WebSettings.logger.info("%s correctly done" % action_populated_string(action_name, values_list, el))
 
 
+def auth(action_name, values_list, el):
+    if log.to_do_info_logging:
+        WebSettings.logger.info("%s correctly done" % action_populated_string(action_name, values_list, el))
+
+
 def scenario(action_name, values_list={}):
     def real_scenario(func):
         def wrapper(*el):
