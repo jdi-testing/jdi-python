@@ -14,11 +14,11 @@ test-output/
 __pycache__/
 .vscode/
 venv/
+*.log
 
 # ReSharper files
 *.DotSettings.user
 *.bat
-*.txt
 *.user
 Python/JDI/core/interfaces/__pycache__/
 Python/JDI/core/logger/__pycache__/
