@@ -12,6 +12,8 @@ packages/
 *.nupkg
 test-output/
 __pycache__/
+.vscode/
+venv/
 
 # ReSharper files
 *.DotSettings.user
