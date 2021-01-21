@@ -23,10 +23,14 @@ class Form(Section):
         fields = self.get_fields(entity_map)
         for field in fields:
             field.set_value(entity_map[field.name])
-           # field.get_web_element().send_keys(entity_map[field.name])
+            # field.get_web_element().send_keys(entity_map[field.name])
 
     def get_button(self, button_name):
-        return [element for element in self.__class__.__dict__.values() if element.__class__.__name__ is "Button"][0]
+        return [
+            element
+            for element in self.__class__.__dict__.values()
+            if element.__class__.__name__ == "Button"
+        ][0]
 
     def get_fields(self, entity_map):
         # items = self.__class__.__dict__.items()
@@ -37,13 +41,20 @@ class Form(Section):
         #             res.append(item[1])
         # return res
         #
-        return list(map(lambda item: item[1],
-                        filter(
-                            lambda item: item[0] in entity_map and
-                                         (isinstance(item[1], TextField)
-                                          or isinstance(item[1], TextArea)
-                                          or isinstance(item[1], Dropdown)),
-                            self.__class__.__dict__.items())))
+        return list(
+            map(
+                lambda item: item[1],
+                filter(
+                    lambda item: item[0] in entity_map
+                    and (
+                        isinstance(item[1], TextField)
+                        or isinstance(item[1], TextArea)
+                        or isinstance(item[1], Dropdown)
+                    ),
+                    self.__class__.__dict__.items(),
+                ),
+            )
+        )
 
     @staticmethod
     def get_map_from_object(obj):
@@ -51,8 +62,17 @@ class Form(Section):
         return obj.__dict__
 
     def set_text(self, text):
-        field = sorted((list(filter(lambda item: isinstance(item[1], TextField) or isinstance(item[1], TextArea),
-                                    self.__class__.__dict__.items()))))[0][1]
+        field = sorted(
+            (
+                list(
+                    filter(
+                        lambda item: isinstance(item[1], TextField)
+                        or isinstance(item[1], TextArea),
+                        self.__class__.__dict__.items(),
+                    )
+                )
+            )
+        )[0][1]
         field.send_keys(text)
 
     def submit_form(self, entity, button_name="submit"):
