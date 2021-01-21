@@ -1,4 +1,4 @@
-from pip import logger
+import logging as logger
 
 
 class BaseMatcher:
