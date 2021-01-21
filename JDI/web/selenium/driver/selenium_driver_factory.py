@@ -32,9 +32,12 @@ class SeleniumDriverFactory(object):
                 self.current_driver = self.register_firefox_driver()
         return driver_name
 
-    def set_driver_options_and_capabilities(self, driver_name, options, capabilities,  executor):
+    def set_driver_options_and_capabilities(self, driver_name, options, capabilities, executor):
         if driver_name == DriverTypes.chrome.name:
             self.options = ChromeOptions()
+            # TODO: move hardcoded arguments to params
+            self.options.add_argument("start-maximized")
+            self.options.add_argument("disable-gpu")
             self.add_options(options) if options else True
             if not capabilities and executor is not None:
                 self.capabilities = DesiredCapabilities.CHROME
