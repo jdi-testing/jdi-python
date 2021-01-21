@@ -1,4 +1,4 @@
-from _pytest import unittest
+import unittest
 from ddt import ddt, data
 from selenium.webdriver.common.by import By
 
