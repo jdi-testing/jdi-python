@@ -19,7 +19,7 @@ class WebSettings(JDISettings):
 
     @staticmethod
     def use_driver(options=None, capabilities=None, executor=None):
-        driver_name = JDISettings.get_setting_by_name('driver')
+        driver_name = JDISettings.get_setting_by_name("driver")
         JDISettings._driver_factory = SeleniumDriverFactory()
         WebSettings.set_driver_factory(JDISettings._driver_factory)
         return JDISettings._driver_factory.register_driver(driver_name, options, capabilities, executor)

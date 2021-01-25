@@ -5,6 +5,8 @@ from Test.jdi_uitests_webtests.main.page_objects.epam_jdi_site import EpamJDISit
 from Test.jdi_uitests_webtests.main.utils.common_action_data import CommonActionsData
 from Test.jdi_uitests_webtests.test.init_tests import InitTests
 
+MSG = "Colors: value changed to Blue"
+
 
 class DropdownExpandedTests(InitTests):
 
@@ -12,22 +14,22 @@ class DropdownExpandedTests(InitTests):
 
     dropdown = EpamJDISite.metals_colors_page.color_dropdown
 
-    def setUp(self):
+    def setUp(self, name="DropdownExpandedTests"):
         super(DropdownExpandedTests, self).setUp(self.id().split(".")[-1])
         Preconditions.METALS_AND_COLORS_PAGE.is_in_state()
         self.dropdown.expand()
 
     def test_select_string(self):
         self.dropdown.select("Blue")
-        CommonActionsData.check_action("Colors: value changed to Blue")
+        CommonActionsData.check_action(MSG)
 
     def test_select_index(self):
         self.dropdown.select(4)
-        CommonActionsData.check_action("Colors: value changed to Blue")
+        CommonActionsData.check_action(MSG)
 
     def test_select_enum(self):
         self.dropdown.select(Colors.BLUE)
-        CommonActionsData.check_action("Colors: value changed to Blue")
+        CommonActionsData.check_action(MSG)
 
     def test_get_options(self):
         Assert.assert_equal(self.dropdown.get_options(), self.odd_options)
@@ -43,7 +45,7 @@ class DropdownExpandedTests(InitTests):
 
     def test_set_value(self):
         self.dropdown.set_value("Blue")
-        CommonActionsData.check_action("Colors: value changed to Blue")
+        CommonActionsData.check_action(MSG)
 
     def test_get_name(self):
         Assert.assert_equal(self.dropdown.get_name(), "color_dropdown")
@@ -52,7 +54,9 @@ class DropdownExpandedTests(InitTests):
         Assert.assert_equal(self.dropdown.get_selected(), "Colors")
 
     def test_get_selected_index(self):
-        CommonActionsData.check_action_throw_error(lambda: self.dropdown.get_selected_index(), CommonActionsData.no_elements_message())
+        CommonActionsData.check_action_throw_error(
+            lambda: self.dropdown.get_selected_index(), CommonActionsData.no_elements_message()
+        )
 
     def test_is_selected(self):
         Assert.assert_equal(self.dropdown.is_selected("Colors"), True)

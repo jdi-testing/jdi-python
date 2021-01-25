@@ -31,9 +31,10 @@ jobs:
     - name: Download Chrome driver
       run: |
         python get_driver.py
-    - name: Run tests
-      run: |
-        python -m unittest Test\jdi_uitests_webtests\test\run_all_tests.py -v
+    # TODO: use virtual machine for tests run
+    # - name: Run tests
+    #   run: |
+    #     python -m unittest Test\jdi_uitests_webtests\test\run_all_tests.py -v
       shell: cmd
     - name: Save debug log file
       uses: actions/upload-artifact@v2
