@@ -5,6 +5,8 @@ from Test.jdi_uitests_webtests.main.page_objects.epam_jdi_site import EpamJDISit
 from Test.jdi_uitests_webtests.main.utils.common_action_data import CommonActionsData
 from Test.jdi_uitests_webtests.test.init_tests import InitTests
 
+MSG = "Summary (Odd): value changed to 7"
+
 
 class SelectorTests(InitTests):
     odd_options = ["1", "3", "5", "7"]
@@ -17,15 +19,15 @@ class SelectorTests(InitTests):
 
     def test_select_string(self):
         self.radio_buttons.select("7")
-        CommonActionsData.check_action("Summary (Odd): value changed to 7")
+        CommonActionsData.check_action(MSG)
 
     def test_select_index(self):
         self.radio_buttons.select(4)
-        CommonActionsData.check_action("Summary (Odd): value changed to 7")
+        CommonActionsData.check_action(MSG)
 
     def test_select_enum(self):
         self.radio_buttons.select(Odds.SEVEN)
-        CommonActionsData.check_action("Summary (Odd): value changed to 7")
+        CommonActionsData.check_action(MSG)
 
     def test_get_options(self):
         Assert.assert_equal(self.radio_buttons.get_options(), self.odd_options)
@@ -41,10 +43,10 @@ class SelectorTests(InitTests):
 
     def test_set_value_text(self):
         self.radio_buttons.set_value("7")
-        CommonActionsData.check_action("Summary (Odd): value changed to 7")
+        CommonActionsData.check_action(MSG)
 
     def test_get_name(self):
-        Assert.assert_equal(self.radio_buttons.get_name(),"odds_selector")
+        Assert.assert_equal(self.radio_buttons.get_name(), "odds_selector")
 
     def test_get_selected(self):
         Assert.assert_equal(self.radio_buttons.get_selected(), "1")
