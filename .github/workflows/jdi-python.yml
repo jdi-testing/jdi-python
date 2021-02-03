@@ -30,11 +30,12 @@ jobs:
         pip install -r requirements-dev.txt
     - name: Download Chrome driver
       run: |
+        cd utils
         python get_driver.py
     # TODO: use virtual machine for tests run
-    # - name: Run tests
-    #   run: |
-    #     python -m unittest Test\jdi_uitests_webtests\test\run_all_tests.py -v
+    - name: Run unit tests
+      run: |
+        pytest -v --cov=. --cov-config=.coveragerc --cov-report=html -m unit
       shell: cmd
     - name: Save debug log file
       uses: actions/upload-artifact@v2
