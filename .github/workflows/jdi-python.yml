@@ -1,7 +1,7 @@
 # This workflow will install Python dependencies, run tests and lint with a variety of Python versions
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
-name: JDI-Python
+name: JDI-Python tests
 
 on:
   push:
@@ -11,9 +11,10 @@ on:
 
 jobs:
   build:
-
-    runs-on: windows-latest
+    name: Tests on Python
+    runs-on: ubuntu-18.04
     strategy:
+      fail-fast: false # for future if we need several pythons versions
       matrix:
         python-version: [3.9]
 
@@ -32,20 +33,22 @@ jobs:
       run: |
         cd utils
         python get_driver.py
+
     # TODO: use virtual machine for tests run
     - name: Run unit tests
       run: |
         pytest -v --cov=. --cov-config=.coveragerc --cov-report=html -m unit
-      shell: cmd
+
     - name: Save debug log file
       uses: actions/upload-artifact@v2
       with:
-        name: logs
+        name: logs-debug-${{ matrix.python-version }}
         path: debug.log
       if: ${{ always() }}
+
     - name: Save jdi log file
       uses: actions/upload-artifact@v2
       with:
-        name: logs
+        name: logs-jdi-${{ matrix.python-version }}
         path: jdi.log
       if: ${{ always() }}
