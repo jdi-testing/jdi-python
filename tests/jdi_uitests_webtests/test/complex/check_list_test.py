@@ -1,5 +1,7 @@
 import unittest
-from ddt import ddt, data
+
+import pytest
+from ddt import data, ddt
 from selenium.webdriver.common.by import By
 
 from JDI.core.settings.jdi_settings import JDISettings
@@ -9,10 +11,10 @@ from tests.jdi_uitests_webtests.main.enums.preconditions import Preconditions
 from tests.jdi_uitests_webtests.main.page_objects.epam_jdi_site import EpamJDISite
 from tests.jdi_uitests_webtests.main.utils.common_action_data import CommonActionsData
 from tests.jdi_uitests_webtests.test.init_tests import InitTests
-import pytest
 
 FIRE_MSG = "Fire: condition changed to true"
 WATER_MSG = "Water: condition changed to true"
+
 
 @pytest.mark.web
 @ddt
@@ -121,7 +123,6 @@ class CheckListTests(InitTests):
 
     def test_get_value(self):
         Assert.assert_equal(self.check_list.get_value(), None)
-
 
     def check_all_checked(self):
         driver = JDISettings.get_driver_factory().get_driver()

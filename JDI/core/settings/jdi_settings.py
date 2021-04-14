@@ -1,31 +1,21 @@
-from __future__ import print_function
+import logging
+from pathlib import Path
 
 from JDI.jdi_assert.base.base_matcher import BaseMatcher
-import os
 
-try:
-    FileNotFoundError
-except NameError:
-    FileNotFoundError = IOError
+logger = logging.Logger(__name__)
 
 
 class PropertyPath:
-    def get_property_file(self, file_name_init="jdi.properties"):
-        file_name = file_name_init
-        i = 0
-        dir_to_search = os.getcwd()
-        print(dir_to_search)
-        while True and i < 100:
-            try:
-                open(file_name)
-                return file_name
-            except FileNotFoundError:
-                dir_to_search = os.path.dirname(dir_to_search)
-                file_name = os.path.join(dir_to_search, file_name_init)
-                i = i + 1
-        raise FileNotFoundError("There is not property file with name '" + file_name_init + "' in your project")
+    def __init__(self, filename="jdi.properties"):
+        self._filename = Path(filename)
 
-    path = property(get_property_file)
+    def get_property_file(self):
+        logger.info("Directory to search {dir_to_search}".format(dir_to_search=self._filename))
+        if self._filename.exists():
+            return self._filename
+        else:
+            raise FileNotFoundError("There is not property file with name '" + self._filename + "' in your project")
 
 
 class log:
@@ -38,48 +28,50 @@ class log:
     @to_do_info_logging.setter
     def set_value(self, value):
         self.val = value
+
     @to_do_info_logging.getter
     def get_value(self):
         return self.val
 
 
-class JDISettings(object):
+class JDISettings:
 
     JDI_SETTINGS_FILE_PATH = PropertyPath().get_property_file()
 
     __wait_element_sec = 20
     _driver_factory = None
     __logger = None
-    _jdi_settings = None
+    _jdi_settings = dict()
     asserter = BaseMatcher()
 
     @staticmethod
-    def get_driver_factory(): return JDISettings._driver_factory
+    def get_driver_factory():
+        return JDISettings._driver_factory
 
     @staticmethod
     def _read_jdi_settings():
-        if JDISettings._jdi_settings is None:
-            f = open(JDISettings.JDI_SETTINGS_FILE_PATH)
+        with open(JDISettings.JDI_SETTINGS_FILE_PATH) as f:
             JDISettings._jdi_settings = dict()
-            for line in f:
-                param = line.split("=")
-                JDISettings._jdi_settings[param[0]] = param[1].strip()
+            for line in f.readlines():
+                if not line.startswith("#"):
+                    param = line.split("=")
+                    JDISettings._jdi_settings[param[0]] = param[1].strip()
 
     @staticmethod
-    def get_driver_path(): return JDISettings.get_setting_by_name("drivers_folder")
+    def get_driver_path():
+        return JDISettings.get_setting_by_name("drivers_folder")
 
     @staticmethod
     def get_setting_by_name(setting_name):
-        if JDISettings._jdi_settings is None or setting_name in JDISettings._jdi_settings:
+        if not JDISettings._jdi_settings:
             JDISettings._read_jdi_settings()
-        return JDISettings._jdi_settings[setting_name] if setting_name in JDISettings._jdi_settings else None
+        return JDISettings._jdi_settings.get(setting_name, None)
 
     @staticmethod
     def get_current_timeout_sec():
-        prop = JDISettings.get_setting_by_name("timeout_wait_element")
-        return JDISettings.__wait_element_sec if prop is None else prop
+        timeout_wait_element = JDISettings.get_setting_by_name("timeout_wait_element")
+        return JDISettings.__wait_element_sec if timeout_wait_element is None else timeout_wait_element
 
     @staticmethod
     def get_domain():
-       return JDISettings.get_setting_by_name("domain")
-
+        return JDISettings.get_setting_by_name("domain")

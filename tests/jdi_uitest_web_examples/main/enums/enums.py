@@ -2,19 +2,19 @@ from enum import Enum
 
 
 class HeaderMenu(Enum):
-    SOLUTIONS   = "SOLUTIONS"
-    INDUSTRIES  = "INDUSTRIES"
-    ABOUT       = "ABOUT"
-    IDEAS       = "IDEAS"
-    CAREERS     = "CAREERS"
-    CONTACT     = "CONTACT"
+    SOLUTIONS = "SOLUTIONS"
+    INDUSTRIES = "INDUSTRIES"
+    ABOUT = "ABOUT"
+    IDEAS = "IDEAS"
+    CAREERS = "CAREERS"
+    CONTACT = "CONTACT"
 
 
 class HeaderSolutionsMenu(Enum):
-    PRODUCT_DEVELOPMENT     = "Product Development"
-    ENGINEERING_EXCELLENCE  = "Engineering Excellence"
-    CORE_TECHNOLOGIES       = "Core Technologies"
-    ASSURANCE               = "Assurance"
+    PRODUCT_DEVELOPMENT = "Product Development"
+    ENGINEERING_EXCELLENCE = "Engineering Excellence"
+    CORE_TECHNOLOGIES = "Core Technologies"
+    ASSURANCE = "Assurance"
 
 
 class JobCategories(Enum):
@@ -22,10 +22,10 @@ class JobCategories(Enum):
 
 
 class JobListHeaders(Enum):
-    NAME     = "name"
+    NAME = "name"
     CATEGORY = "category"
     LOCATION = "location"
-    APPLY    = "apply"
+    APPLY = "apply"
 
 
 class Locations(Enum):

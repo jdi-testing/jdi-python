@@ -1,7 +1,7 @@
-import unittest
-import pytest
-
 import time
+import unittest
+
+import pytest
 
 from JDI.web.selenium.elements.composite.web_site import WebSite
 from JDI.web.selenium.settings.web_settings import WebSettings

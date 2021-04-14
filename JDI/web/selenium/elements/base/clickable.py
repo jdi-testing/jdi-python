@@ -1,5 +1,5 @@
-from JDI.web.selenium.elements.base.element import Element
 from JDI.core.utils.decorators import scenario
+from JDI.web.selenium.elements.base.element import Element
 
 
 class Clickable(Element):

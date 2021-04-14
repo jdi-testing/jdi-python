@@ -1,3 +1,5 @@
+import pytest
+
 from JDI.jdi_assert.testing.assertion import Assert
 from tests.jdi_uitests_webtests.main.entities.contact import Contact
 from tests.jdi_uitests_webtests.main.enums.entities import Buttons
@@ -5,7 +7,6 @@ from tests.jdi_uitests_webtests.main.enums.preconditions import Preconditions
 from tests.jdi_uitests_webtests.main.page_objects.epam_jdi_site import EpamJDISite
 from tests.jdi_uitests_webtests.main.utils.common_action_data import CommonActionsData
 from tests.jdi_uitests_webtests.test.init_tests import InitTests
-import pytest
 
 
 @pytest.mark.web
@@ -35,7 +36,10 @@ class FormTests(InitTests):
 
     def test_submit_string(self):
         self.form.submit_form(self.contact.description)
-        Assert.assert_equal(EpamJDISite.contact_form_page.result.get_text(), "Summary: 3\nDescription: {0}".format(self.contact.description))
+        Assert.assert_equal(
+            EpamJDISite.contact_form_page.result.get_text(),
+            "Summary: 3\nDescription: {0}".format(self.contact.description),
+        )
 
     def test_verify(self):
         self.form.fill(self.contact)
@@ -44,4 +48,3 @@ class FormTests(InitTests):
     def test_check(self):
         self.form.fill(self.contact)
         self.form.check(self.contact)
-

@@ -8,8 +8,9 @@ class TreeDropdown(Dropdown):
     tree_locators = list()
 
     def __init__(self, by_select_locator, by_tree_locators=None):
-        super(TreeDropdown, self).__init__(by_select_locator=by_select_locator,
-                                           by_option_locator_template=by_select_locator)
+        super(TreeDropdown, self).__init__(
+            by_select_locator=by_select_locator, by_option_locator_template=by_select_locator
+        )
         self.tree_locators = by_tree_locators
 
     def select_action(self, names):

@@ -1,5 +1,6 @@
-from JDI.web.selenium.settings.web_settings import WebSettings
 from re import match
+
+from JDI.web.selenium.settings.web_settings import WebSettings
 
 
 class WebPreconditions:

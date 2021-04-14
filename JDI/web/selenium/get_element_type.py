@@ -1,4 +1,5 @@
-from JDI.web.selenium.elements.api_interact.get_element_module import GetElementModule
+from JDI.web.selenium.elements.api_interact.get_element_module import \
+    GetElementModule
 
 
 class GetElementType:

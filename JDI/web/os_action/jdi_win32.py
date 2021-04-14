@@ -1,5 +1,6 @@
-import win32com.client
 import time
+
+import win32com.client
 
 
 class jdi_win32:

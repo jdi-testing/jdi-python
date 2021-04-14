@@ -1,9 +1,10 @@
+import pytest
+
 from JDI.core.settings.jdi_settings import JDISettings
 from JDI.jdi_assert.testing.assertion import Assert
 from tests.jdi_uitests_webtests.main.enums.preconditions import Preconditions
 from tests.jdi_uitests_webtests.main.page_objects.epam_jdi_site import EpamJDISite
 from tests.jdi_uitests_webtests.test.init_tests import InitTests
-import pytest
 
 
 @pytest.mark.web
@@ -20,11 +21,11 @@ class TextFieldTests(InitTests):
 
     def test_input(self):
         self.text_field.input(self.input_text)
-        Assert.assert_equal(self.text_field.get_text(), self.initial_text+self.input_text)
+        Assert.assert_equal(self.text_field.get_text(), self.initial_text + self.input_text)
 
     def test_send_key(self):
         self.text_field.send_keys(self.input_text)
-        Assert.assert_equal(self.text_field.get_text(), self.initial_text+self.input_text)
+        Assert.assert_equal(self.text_field.get_text(), self.initial_text + self.input_text)
 
     def test_new_input(self):
         self.text_field.new_input(self.input_text)
@@ -37,7 +38,7 @@ class TextFieldTests(InitTests):
     def test_multi_key(self):
         for letter in self.input_text:
             self.text_field.send_keys(letter)
-        Assert.assert_equal(self.text_field.get_text(), self.initial_text+self.input_text)
+        Assert.assert_equal(self.text_field.get_text(), self.initial_text + self.input_text)
 
     def test_focus(self):
         value = "value"

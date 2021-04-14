@@ -1,5 +1,7 @@
-import tempfile, os
 import logging
+import os
+import tempfile
+
 from selenium.webdriver.common.by import By
 
 from JDI.core.settings.jdi_settings import JDISettings

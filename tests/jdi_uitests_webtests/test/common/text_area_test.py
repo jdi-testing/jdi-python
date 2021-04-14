@@ -1,8 +1,9 @@
+import pytest
+
 from JDI.jdi_assert.testing.assertion import Assert
 from tests.jdi_uitests_webtests.main.enums.preconditions import Preconditions
 from tests.jdi_uitests_webtests.main.page_objects.epam_jdi_site import EpamJDISite
 from tests.jdi_uitests_webtests.test.init_tests import InitTests
-import pytest
 
 
 @pytest.mark.web
@@ -29,5 +30,3 @@ class TextAreaTests(InitTests):
     def test_get_lines(self):
         self.text_item.send_keys(self.LINES[0] + "\n" + self.LINES[1] + "\n" + self.LINES[2])
         Assert.assert_equal(self.text_item.get_lines(), self.LINES)
-
-

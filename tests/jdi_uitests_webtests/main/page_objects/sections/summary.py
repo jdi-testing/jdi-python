@@ -1,5 +1,6 @@
-from enum import Enum
 from abc import ABCMeta, abstractmethod
+from enum import Enum
+
 from JDI.web.selenium.elements.api_interact.find_element_by import By
 from JDI.web.selenium.elements.complex.radio_buttons import RadioButtons
 from JDI.web.selenium.elements.complex.selector import Selector

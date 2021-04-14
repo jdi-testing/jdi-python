@@ -1,14 +1,14 @@
 import os
 
-from selenium.webdriver.chrome.webdriver import WebDriver as ChromeDriver
-from selenium.webdriver.remote.webdriver import WebDriver as RemoteDriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
-from selenium.webdriver.firefox.options import Options as FirefoxOptions
+from selenium.webdriver.chrome.webdriver import WebDriver as ChromeDriver
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from selenium.webdriver.firefox.options import Options as FirefoxOptions
+from selenium.webdriver.remote.webdriver import WebDriver as RemoteDriver
 
+from JDI.core.settings.jdi_settings import JDISettings
 from JDI.web.selenium.driver.driver_types import DriverTypes
 from JDI.web.selenium.driver.web_driver_provider import WebDriverProvider
-from JDI.core.settings.jdi_settings import JDISettings
 
 
 class SeleniumDriverFactory(object):

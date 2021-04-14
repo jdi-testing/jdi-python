@@ -1,10 +1,11 @@
+import pytest
+
 from JDI.jdi_assert.testing.assertion import Assert
 from tests.jdi_uitests_webtests.main.enums.entities import Metals
 from tests.jdi_uitests_webtests.main.enums.preconditions import Preconditions
 from tests.jdi_uitests_webtests.main.page_objects.epam_jdi_site import EpamJDISite
 from tests.jdi_uitests_webtests.main.utils.common_action_data import CommonActionsData
 from tests.jdi_uitests_webtests.test.init_tests import InitTests
-import pytest
 
 
 @pytest.mark.web
@@ -53,7 +54,9 @@ class ComboBoxTests(InitTests):
         Assert.assert_equal(self.combo_box.get_selected(), "Gold")
 
     def test_get_selected_index(self):
-        CommonActionsData.check_action_throw_error(lambda: self.combo_box.get_selected_index(), CommonActionsData.no_elements_message())
+        CommonActionsData.check_action_throw_error(
+            lambda: self.combo_box.get_selected_index(), CommonActionsData.no_elements_message()
+        )
 
     def test_is_selected(self):
         Assert.assert_equal(self.combo_box.is_selected("Col"), True)

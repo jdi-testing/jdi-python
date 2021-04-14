@@ -3,8 +3,9 @@
 # TODO: download chromedriver and save to path
 # TODO: download and install chrome
 # TODO: argparse
-import requests
 import zipfile
+
+import requests
 
 CHROMEDRIVER_URL = "https://chromedriver.storage.googleapis.com"
 

@@ -1,14 +1,15 @@
 from __future__ import with_statement
+
 import json
 import logging
 import logging.config
+from io import open
 
 from JDI.core.settings.jdi_settings import PropertyPath
-from io import open
 
 
 class JDILogger(object):
-    JDI_LOGGING_CONFIG_FILE_PATH = PropertyPath().get_property_file(file_name_init="logging.json")
+    JDI_LOGGING_CONFIG_FILE_PATH = PropertyPath("logging.json").get_property_file()
 
     def __init__(self, name="JDI Logger"):
 

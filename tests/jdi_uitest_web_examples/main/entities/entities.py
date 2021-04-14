@@ -2,7 +2,6 @@ from tests.jdi_uitest_web_examples.main.enums.enums import JobCategories, Locati
 
 
 class JobSearchFilter(object):
-
     def __init__(self):
         self.keyword = "QA"
         self.category = JobCategories.QA
@@ -10,7 +9,6 @@ class JobSearchFilter(object):
 
 
 class Attendee(object):
-
     def __init__(self):
         self.filter = JobSearchFilter()
         self.first_name = "Roman"
@@ -31,10 +29,9 @@ class Job:
         self.category = category
         self.location = location
 
+
 class User:
     DEFAULT = {"UserTest", "Test Password"}
 
     name = None
     password = None
-
-
