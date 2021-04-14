@@ -1,5 +1,7 @@
 import os
+
 from JDI.core.settings.jdi_settings import JDISettings
+
 
 class WebDriverProvider(object):
 

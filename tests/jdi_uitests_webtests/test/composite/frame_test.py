@@ -1,11 +1,10 @@
 import time
 
+import pytest
+
 from JDI.jdi_assert.testing.assertion import Assert
 from tests.jdi_uitests_webtests.main.page_objects.w3c_site.w3c_site import W3cSite
 from tests.jdi_uitests_webtests.test.init_tests import W3CInit
-
-
-import pytest
 
 
 @pytest.mark.web

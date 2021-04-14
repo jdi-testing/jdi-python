@@ -1,6 +1,7 @@
 import unittest
 
-from ddt import ddt, data, unpack
+import pytest
+from ddt import data, ddt, unpack
 
 from JDI.core.settings.jdi_settings import JDISettings
 from JDI.jdi_assert.testing.assertion import Assert
@@ -8,7 +9,6 @@ from tests.jdi_uitests_webtests.main.enums.preconditions import Preconditions
 from tests.jdi_uitests_webtests.main.page_objects.epam_jdi_site import EpamJDISite
 from tests.jdi_uitests_webtests.main.utils.common_action_data import CommonActionsData
 from tests.jdi_uitests_webtests.test.init_tests import InitTests
-import pytest
 
 MSG_TRUE = "Water: condition changed to true"
 MSG_FALSE = "Water: condition changed to false"

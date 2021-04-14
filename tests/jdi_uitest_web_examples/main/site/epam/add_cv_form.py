@@ -14,14 +14,17 @@ class AddCVForm(Form):
     last_name = TextField(By.css("[placeholder='Last Name']"))
     email = TextField(By.css("[placeholder='Email']"))
 
-    country = Dropdown(root=By.css(".country-wrapper"),
-                       by_select_locator=By.css(".arrow"),
-                       by_option_locator_template=By.xpath(
-                           "*root*//*[contains(@id,'select-box-applicantCountry')]//li[.='%s']"))
+    country = Dropdown(
+        root=By.css(".country-wrapper"),
+        by_select_locator=By.css(".arrow"),
+        by_option_locator_template=By.xpath("*root*//*[contains(@id,'select-box-applicantCountry')]//li[.='%s']"),
+    )
 
-    city = Dropdown(root=By.css(".country-wrapper"),
-                    by_select_locator=By.css(".arrow"),
-                    by_option_locator_all=By.xpath("*root*//*[contains(@id,'select-box-applicantCity')]//li"))
+    city = Dropdown(
+        root=By.css(".country-wrapper"),
+        by_select_locator=By.css(".arrow"),
+        by_option_locator_all=By.xpath("*root*//*[contains(@id,'select-box-applicantCity')]//li"),
+    )
 
     cv = RFileInput(By.css(".file-upload"))
     comment = TextArea(By.xpath(".comment-input"))
@@ -32,12 +35,15 @@ class AddCVForm(Form):
 
 class JobFilter(Form):
     keyword = TextField(By.css(".job-search-input"))
-    category = Dropdown(root=By.css(".multi-select-department"),
-                        by_select_locator=By.css(".multi-select-filter"),
-                        by_option_locator_all=By.css(".blue-checkbox-label"))
+    category = Dropdown(
+        root=By.css(".multi-select-department"),
+        by_select_locator=By.css(".multi-select-filter"),
+        by_option_locator_all=By.css(".blue-checkbox-label"),
+    )
 
-    location = TreeDropdown(By.css(".career-location-box"),
-                            [By.css(".location-dropdown .optgroup"), By.xpath("//..//li")])
+    location = TreeDropdown(
+        By.css(".career-location-box"), [By.css(".location-dropdown .optgroup"), By.xpath("//..//li")]
+    )
 
     select_button = Button(By.css(".job-search-button"))
     label = Label(By.css(".job-search-title"))

@@ -6,7 +6,6 @@ from tests.jdi_uitests_webtests.main.page_objects.sections.contact_form import C
 
 
 class DatesPage(WebPage):
-
     def __init__(self, url, title):
         super(DatesPage, self).__init__(url=url, title=title)
 

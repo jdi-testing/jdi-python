@@ -1,13 +1,13 @@
+from JDI.web.selenium.elements.api_interact.find_element_by import By
 from JDI.web.selenium.elements.complex.text_list import TextList
 from JDI.web.selenium.elements.composite.web_site import WebSite
-from JDI.web.selenium.elements.api_interact.find_element_by import By
 from tests.jdi_uitests_webtests.main.page_objects.pages import (
-    HomePage,
-    MetalColorPage,
     ContactFormPage,
-    SupportPage,
     DatesPage,
+    HomePage,
     Login,
+    MetalColorPage,
+    SupportPage,
 )
 from tests.jdi_uitests_webtests.main.page_objects.pages.simple_table_page import SimpleTablePage
 from tests.jdi_uitests_webtests.main.page_objects.sections.footer import Footer

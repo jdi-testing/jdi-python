@@ -1,4 +1,5 @@
 from __future__ import division
+
 from selenium.webdriver import ActionChains
 
 from JDI.core.settings.jdi_settings import JDISettings

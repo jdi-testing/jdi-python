@@ -4,6 +4,7 @@ from JDI.core.utils.decorators import scenario
 from JDI.web.selenium.elements.actions.waiter import waiter_decorator
 from JDI.web.selenium.elements.base.element import Element
 
+
 class Text(Element):
 
     def __init__(self, by_locator=None, web_element=None):

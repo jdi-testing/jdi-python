@@ -1,13 +1,15 @@
+import pytest
+
 from JDI.core.settings.jdi_settings import JDISettings
 from JDI.jdi_assert.testing.assertion import Assert
 from tests.jdi_uitests_webtests.main.enums.preconditions import Preconditions
 from tests.jdi_uitests_webtests.main.page_objects.epam_jdi_site import EpamJDISite
 from tests.jdi_uitests_webtests.test.init_tests import InitTests
-import pytest
 
 
 def check_page_opened(num):
     Assert.assert_true(JDISettings.get_driver_factory().get_driver().current_url.endswith("/page{0}.htm".format(num)))
+
 
 @pytest.mark.web
 class PaginationTests(InitTests):

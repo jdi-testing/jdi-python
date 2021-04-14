@@ -1,6 +1,8 @@
-import pytest
-from utils import get_driver
 import os
+
+import pytest
+
+from utils import get_driver
 
 
 @pytest.mark.unit
