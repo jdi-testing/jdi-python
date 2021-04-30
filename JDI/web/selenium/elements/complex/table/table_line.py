@@ -1,7 +1,3 @@
-from numbers import Number
-
-import numpy as np
-
 from JDI.web.selenium.driver.utils.web_driver_by_utils import WebDriverByUtils
 from JDI.web.selenium.elements.base.element import Element
 
@@ -23,7 +19,7 @@ class TableLine(Element):
     def get_headers(self):
         if len(self.headers) != 0:
             return self.headers
-        local_headers = self.get_headers_text_action() if self.has_header else list(map(lambda x: str(x+1), np.arange(self.get_count(True))))
+        local_headers = self.get_headers_text_action() if self.has_header else list(map(lambda x: str(x+1), range(self.get_count(True))))
         if local_headers is None or len(local_headers) == 0:
             return list()
         if 0 < self.count < len(local_headers):
