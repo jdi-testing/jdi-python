@@ -6,7 +6,8 @@ from selenium.webdriver.common.by import By
 
 from JDI.core.settings.jdi_settings import JDISettings
 from JDI.jdi_assert.testing.assertion import Assert
-from tests.jdi_uitests_webtests.main.page_objects.epam_jdi_site import EpamJDISite
+from tests.jdi_uitests_webtests.main.page_objects.epam_jdi_site import \
+    EpamJDISite
 
 
 class CommonActionsData:
@@ -35,11 +36,10 @@ class CommonActionsData:
         if not os.path.exists(dir_name):
             os.makedirs(dir_name)
 
-        temp = tempfile.TemporaryFile(dir=dir_name)
-        temp.write(b"mystring")
-        CommonActionsData._path = temp.name
-        CommonActionsData._name = temp.name.split("\\")[-1]
-        temp.close()
+        with tempfile.NamedTemporaryFile(dir=dir_name, delete=False) as f:
+            f.write(b"mystring")
+            CommonActionsData._path = f.name
+            CommonActionsData._name = f.name.split("\\")[-1]
 
     @staticmethod
     def check_action(text, line_number=0):
