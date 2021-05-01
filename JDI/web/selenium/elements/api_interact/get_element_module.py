@@ -2,7 +2,7 @@ from JDI.core.settings.jdi_settings import JDISettings
 from JDI.web.selenium.driver.utils.web_driver_by_utils import WebDriverByUtils
 
 
-class GetElementModule(object):
+class GetElementModule:
     FAILED_TO_FIND_ELEMENT_MESSAGE = "Can't find Element '{0}' during  seconds"
     FIND_TO_MUCH_ELEMENTS_MESSAGE = "Find %s elements instead of one for Element '%s' during %s seconds"
 

@@ -16,6 +16,8 @@ __pycache__/
 venv/
 *.log
 htmlcov/
+report.html
+assets/
 
 # ReSharper files
 *.DotSettings.user

@@ -1,7 +1,7 @@
-import time as time2
+import logging
+import time
 
-from JDI.core.settings.jdi_settings import log
-from JDI.web.selenium.settings.web_settings import WebSettings
+logger = logging.getLogger(__name__)
 
 
 def action_populated_string(action_name, values_list, el):
@@ -19,14 +19,15 @@ def action_populated_string(action_name, values_list, el):
 
 
 def action_logging_start(action_name, values_list, el):
-    if log.to_do_info_logging:
-        WebSettings.logger.info("{0} '{1}' '{2}' ({3})".format(action_populated_string(action_name, values_list, el),
-                                                               el[0].__class__.__name__, el[0].name, str(el[0])))
+    logger.info(
+        "{0} '{1}' '{2}' ({3})".format(
+            action_populated_string(action_name, values_list, el), el[0].__class__.__name__, el[0].name, str(el[0])
+        )
+    )
 
 
 def action_logging_stop(action_name, values_list, el):
-    if log.to_do_info_logging:
-        WebSettings.logger.info("%s correctly done" % action_populated_string(action_name, values_list, el))
+    logger.info("%s correctly done" % action_populated_string(action_name, values_list, el))
 
 
 def scenario(action_name, values_list={}):
@@ -44,15 +45,15 @@ def scenario(action_name, values_list={}):
                         return func(*el)
                     except Exception as exception:
                         done = False
-                        time2.sleep(0.5)
+                        time.sleep(0.5)
                         t += 1
                         ex = exception
                     finally:
                         if done:
                             action_logging_stop(action_name, values_list, el)
             finally:
-                if ex is not None and log.to_do_info_logging:
-                    WebSettings.logger.error(ex)
+                if ex is not None:
+                    logger.error(ex)
                     raise ex
 
         return wrapper

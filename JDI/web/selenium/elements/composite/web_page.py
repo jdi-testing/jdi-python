@@ -3,7 +3,10 @@ from JDI.core.settings.jdi_settings import JDISettings
 from JDI.core.utils.decorators import scenario
 from JDI.jdi_assert.testing.assertion import Assert
 from JDI.web.selenium.elements.base.base_element import BaseElement
-from JDI.web.selenium.settings.web_settings import WebSettings
+
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class WebPage(BaseElement):
@@ -34,7 +37,7 @@ class WebPage(BaseElement):
         JDISettings.get_driver_factory().get_driver().back()
 
     def check_opened(self):
-        JDISettings.asserter._is_true(self.verify_opened(), "Page '{0}' is not opened".format(self.__str__()))
+        JDISettings.asserter._is_true(self.verify_opened(), "Page '{0}' is not opened".format(self))
 
     def check_title(self):
         return JDISettings.get_driver_factory().get_driver().title == self.title
@@ -95,12 +98,12 @@ class WebPage(BaseElement):
 
     def should_be_opened(self):
         try:
-            WebSettings.logger.info("Page '{0}' should be opened".format(self.get_name()))
+            logger.info("Page '{0}' should be opened".format(self.get_name()))
             if self.verify_opened(): return
             self.open()
             self.check_opened()
         except Exception as ex:
             msg = "Can't open page '{0}'. Reason: {1}".format(self.get_name(), str(ex))
-            WebSettings.logger.info(msg)
+            logger.info(msg)
             raise Exception(msg)
 
