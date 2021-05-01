@@ -1,3 +1,4 @@
+import logging
 import time
 import unittest
 
@@ -9,17 +10,16 @@ from tests.jdi_uitest_web_examples.main.entities.entities import Attendee
 from tests.jdi_uitest_web_examples.main.enums.enums import HeaderMenu
 from tests.jdi_uitest_web_examples.main.site.epam.epam_site import EpamSite
 
-import logging
-
 logger = logging.getLogger(__name__)
 
-@pytest.mark.skip("Need investigation!")
+
+@pytest.mark.skip("Need to update test bacause it uses epam.com")
 @pytest.mark.web
 class CareerTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         WebSite.init(EpamSite)
-        logger.info("\nRun Tests from '%s' file" % cls.__name__)
+        logger.info("Run Tests from '%s' file" % cls.__name__)
 
     def setUp(self):
         EpamSite.home_page.should_be_opened()
