@@ -1,8 +1,6 @@
 import logging
 from pathlib import Path
 
-from JDI.jdi_assert.base.base_matcher import BaseMatcher
-
 logger = logging.Logger(__name__)
 
 
@@ -26,7 +24,6 @@ class JDISettings:
     _driver_factory = None
     __logger = None
     _jdi_settings = dict()
-    asserter = BaseMatcher()
 
     @staticmethod
     def get_driver_factory():
