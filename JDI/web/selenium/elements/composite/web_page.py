@@ -13,11 +13,6 @@ class WebPage(BaseElement):
     check_url_type = CheckPageTypes.EQUAL
     check_title_type = CheckPageTypes.EQUAL
 
-    url = None
-    url_template = None
-    title = None
-    domain = None
-
     def __init__(self, url, title=None, domain=None, url_template=None, url_check_type=None, title_check_type=None):
         self.url = (JDISettings.get_domain() if domain is None else domain) + url
         self.title = title
@@ -37,7 +32,8 @@ class WebPage(BaseElement):
         JDISettings.get_driver_factory().get_driver().back()
 
     def check_opened(self):
-        JDISettings.asserter._is_true(self.verify_opened(), "Page '{0}' is not opened".format(self))
+        # TODO: refactor, probably move to the tests code
+        assert self.verify_opened(), "Page '{0}' is not opened".format(self)
 
     def check_title(self):
         return JDISettings.get_driver_factory().get_driver().title == self.title
@@ -99,11 +95,11 @@ class WebPage(BaseElement):
     def should_be_opened(self):
         try:
             logger.info("Page '{0}' should be opened".format(self.get_name()))
-            if self.verify_opened(): return
+            if self.verify_opened():
+                return
             self.open()
             self.check_opened()
         except Exception as ex:
             msg = "Can't open page '{0}'. Reason: {1}".format(self.get_name(), str(ex))
             logger.info(msg)
             raise Exception(msg)
-
