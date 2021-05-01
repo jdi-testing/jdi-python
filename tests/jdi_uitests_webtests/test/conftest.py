@@ -10,11 +10,13 @@ from tests.jdi_uitests_webtests.main.page_objects.epam_jdi_site import EpamJDISi
 from tests.jdi_uitests_webtests.main.page_objects.w3c_site.w3c_site import W3cSite
 
 
+logger = logging.getLogger(__name__)
+
+
 @pytest.fixture(scope="class")
 def site():
     WebSite.init(EpamJDISite)
-    # TODO: Refactor logging here
-    WebSettings.logger.info("\nRun Tests from '%s' file" % __name__)
+    logger.info("Run Tests from '{}' file".format(__name__))
     EpamJDISite.home_page.open()
     EpamJDISite.login_page.submit(User.default())
 
@@ -23,4 +25,4 @@ def site():
     try:
         WebSettings.quit_browser()
     except RuntimeError as e:
-        logging.exception(e)
+        logger.exception(e)

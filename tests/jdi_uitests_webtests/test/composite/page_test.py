@@ -11,13 +11,16 @@ from tests.jdi_uitests_webtests.main.entities.user import User
 from tests.jdi_uitests_webtests.main.enums.preconditions import Preconditions
 from tests.jdi_uitests_webtests.main.page_objects.epam_jdi_site import EpamJDISite
 
+import logging
+
+logger = logging.getLogger(__name__)
 
 @pytest.mark.web
 class PageTests(unittest.TestCase):
     def setUp(self):
-        WebSettings.logger.info("Run Test %s" % self.id().split(".")[-1])
+        logger.info("Run Test %s" % self.id().split(".")[-1])
         WebSite.init(EpamJDISite)
-        WebSettings.logger.info("Run Tests")
+        logger.info("Run Tests")
         EpamJDISite.home_page.open()
         EpamJDISite.login_page.submit(User.default())
         Preconditions.CONTACT_PAGE.is_in_state()

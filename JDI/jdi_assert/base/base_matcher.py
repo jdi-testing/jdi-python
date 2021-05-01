@@ -1,12 +1,9 @@
-import logging as logger
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class BaseMatcher:
-    FOUND = "FOUND"
-    is_list_check = False
-
-    def __init__(self): pass
-
     def is_true(self, condition):
         self._is_true(condition, None)
 
@@ -18,5 +15,3 @@ class BaseMatcher:
         if condition != expected_condition:
             logger.exception(fail_message)
             raise Exception(fail_message)
-
-

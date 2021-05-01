@@ -5,7 +5,10 @@ from selenium.webdriver import ActionChains
 from JDI.core.settings.jdi_settings import JDISettings
 from JDI.core.utils.decorators import scenario
 from JDI.web.selenium.elements.complex.selector import Selector
-from JDI.web.selenium.settings.web_settings import WebSettings
+
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 class Menu(Selector):
@@ -41,7 +44,7 @@ class Menu(Selector):
                   "less than select path length ({3})".format(str(self), names,
                                                               len(self.menu_levels_locators),
                                                               len(split))
-            WebSettings.logger.error(msg)
+            logger.error(msg)
             raise Exception(msg)
         self.hover(split[0:-1])
         selector = Selector(list(self.menu_levels_locators)[-1])

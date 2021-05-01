@@ -9,6 +9,9 @@ from tests.jdi_uitest_web_examples.main.entities.entities import Attendee
 from tests.jdi_uitest_web_examples.main.enums.enums import HeaderMenu
 from tests.jdi_uitest_web_examples.main.site.epam.epam_site import EpamSite
 
+import logging
+
+logger = logging.getLogger(__name__)
 
 @pytest.mark.skip("Need investigation!")
 @pytest.mark.web
@@ -16,7 +19,7 @@ class CareerTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         WebSite.init(EpamSite)
-        WebSettings.logger.info("\nRun Tests from '%s' file" % cls.__name__)
+        logger.info("\nRun Tests from '%s' file" % cls.__name__)
 
     def setUp(self):
         EpamSite.home_page.should_be_opened()

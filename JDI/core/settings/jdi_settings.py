@@ -18,22 +18,6 @@ class PropertyPath:
             raise FileNotFoundError("There is not property file with name '" + self._filename + "' in your project")
 
 
-class log:
-    val = True
-
-    @property
-    def to_do_info_logging(self):
-        return self.val
-
-    @to_do_info_logging.setter
-    def set_value(self, value):
-        self.val = value
-
-    @to_do_info_logging.getter
-    def get_value(self):
-        return self.val
-
-
 class JDISettings:
 
     JDI_SETTINGS_FILE_PATH = PropertyPath().get_property_file()
