@@ -1,6 +1,10 @@
+import logging
 import time
 
-import win32com.client
+try:
+    import win32com.client
+except ModuleNotFoundError as e:
+    logging.exception(e)
 
 
 class jdi_win32:
@@ -10,4 +14,4 @@ class jdi_win32:
 
         time.sleep(3)
         shell.Sendkeys(text)
-        shell.Sendkeys("~") 
+        shell.Sendkeys("~")
