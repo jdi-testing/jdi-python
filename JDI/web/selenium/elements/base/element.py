@@ -1,5 +1,3 @@
-from __future__ import division
-
 from selenium.webdriver import ActionChains
 
 from JDI.core.settings.jdi_settings import JDISettings
@@ -8,7 +6,6 @@ from JDI.web.selenium.elements.base.base_element import BaseElement
 
 
 class Element(BaseElement):
-
     def __init__(self, by_locator=None, web_element=None):
         self.parent = None
         if by_locator is not None:
@@ -24,9 +21,9 @@ class Element(BaseElement):
 
     @scenario(action_name="Set Attribute '%s'='%s", values_list={"2_values_from_function"})
     def set_attribute(self, attribute_name, value):
-        JDISettings.get_driver_factory()\
-            .get_driver().execute_script("arguments[0].setAttribute('{0}',arguments[1]);".format(attribute_name),
-                                         self.get_element(), value)
+        JDISettings.get_driver_factory().get_driver().execute_script(
+            "arguments[0].setAttribute('{0}',arguments[1]);".format(attribute_name), self.get_element(), value
+        )
 
     @scenario(action_name="Get web element")
     def get_web_element(self):
@@ -68,7 +65,9 @@ class Element(BaseElement):
     def focus_action(self):
         size = self.get_web_element().size
         driver = JDISettings.get_driver_factory().get_driver()
-        ActionChains(driver).move_to_element_with_offset(self.get_web_element(), size["width"] / 2, size["height"] / 2).perform()
+        ActionChains(driver).move_to_element_with_offset(
+            self.get_web_element(), size["width"] / 2, size["height"] / 2
+        ).perform()
 
     @scenario(action_name="Drag and drop to Target Element: %s", values_list="value_from_function")
     def drag_and_drop(self, target):
