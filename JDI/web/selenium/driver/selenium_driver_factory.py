@@ -11,7 +11,7 @@ from JDI.web.selenium.driver.driver_types import DriverTypes
 from JDI.web.selenium.driver.web_driver_provider import WebDriverProvider
 
 
-class SeleniumDriverFactory(object):
+class SeleniumDriverFactory:
 
     def __init__(self):
         self.options = None

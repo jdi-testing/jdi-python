@@ -4,7 +4,7 @@ import sys
 from JDI.core.settings.jdi_settings import JDISettings
 
 
-class WebDriverProvider(object):
+class WebDriverProvider:
     @staticmethod
     def get_chrome_driver_path():
         chrome = "/chromedriver.exe" if sys.platform.startswith("win") else "chromedriver"
