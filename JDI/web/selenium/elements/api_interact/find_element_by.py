@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By as Selenium_By
 
 
-class By(object):
+class By:
 
     @staticmethod
     def id(by_id):
