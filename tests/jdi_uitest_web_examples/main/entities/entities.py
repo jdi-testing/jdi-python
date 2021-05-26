@@ -1,14 +1,14 @@
 from tests.jdi_uitest_web_examples.main.enums.enums import JobCategories, Locations
 
 
-class JobSearchFilter(object):
+class JobSearchFilter:
     def __init__(self):
         self.keyword = "QA"
         self.category = JobCategories.QA
         self.location = Locations.MOSCOW
 
 
-class Attendee(object):
+class Attendee:
     def __init__(self):
         self.filter = JobSearchFilter()
         self.first_name = "Roman"

@@ -1,7 +1,7 @@
 import os
 
 
-class User(object):
+class User:
     @staticmethod
     def default():
         return User()
