@@ -5,13 +5,12 @@ from tests.jdi_uitests_webtests.main.enums.entities import Colors
 from tests.jdi_uitests_webtests.main.enums.preconditions import Preconditions
 from tests.jdi_uitests_webtests.main.page_objects.epam_jdi_site import EpamJDISite
 from tests.jdi_uitests_webtests.main.utils.common_action_data import CommonActionsData
-from tests.jdi_uitests_webtests.test.init_tests import InitTests
 
 MSG = "Colors: value changed to Blue"
 
 
 @pytest.fixture(params=[True, False], ids=["Dropdown", "Dropdown expanded"])
-def dropdown_setup(request, site):
+def dropdown_setup(request, epam_site):
     dropdown = EpamJDISite.metals_colors_page.color_dropdown
     Preconditions.METALS_AND_COLORS_PAGE.is_in_state()
     if request.param:

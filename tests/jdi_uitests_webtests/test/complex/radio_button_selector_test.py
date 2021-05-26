@@ -1,18 +1,20 @@
+import pytest
+
 from JDI.jdi_assert.testing.assertion import Assert
 from tests.jdi_uitests_webtests.main.enums.entities import Odds
 from tests.jdi_uitests_webtests.main.enums.preconditions import Preconditions
-from tests.jdi_uitests_webtests.main.page_objects.epam_jdi_site import EpamJDISite
-from tests.jdi_uitests_webtests.main.page_objects.sections.summary import SelectorSummary
-from tests.jdi_uitests_webtests.main.utils.common_action_data import CommonActionsData
-from tests.jdi_uitests_webtests.test.init_tests import InitTests
+from tests.jdi_uitests_webtests.main.page_objects.epam_jdi_site import \
+    EpamJDISite
+from tests.jdi_uitests_webtests.main.page_objects.sections.summary import \
+    SelectorSummary
+from tests.jdi_uitests_webtests.main.utils.common_action_data import \
+    CommonActionsData
 
 MSG = "Summary (Odd): value changed to 7"
 
-import pytest
-
 
 @pytest.fixture
-def selector_site(site):
+def selector_site(epam_site):
     Preconditions.METALS_AND_COLORS_PAGE.is_in_state()
 
 
