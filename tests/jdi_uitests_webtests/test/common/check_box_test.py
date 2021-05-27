@@ -19,8 +19,9 @@ class TestCheckBoxText:
 
     check_box = EpamJDISite.metals_colors_page.cb_water
 
+    @staticmethod
     @pytest.mark.parametrize("input_value, expected", [("True", True), ("1", True), ("False", False), ("0", False)])
-    def test_set_value(self, checkbox_setup, input_value, expected):
+    def test_set_value(checkbox_setup, input_value, expected):
         if not expected:
             EpamJDISite.metals_colors_page.cb_water.click()
         EpamJDISite.metals_colors_page.cb_water.set_value(input)
