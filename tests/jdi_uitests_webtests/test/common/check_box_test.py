@@ -20,22 +20,22 @@ class TestCheckBoxText:
     check_box = EpamJDISite.metals_colors_page.cb_water
 
     @staticmethod
-    @pytest.mark.parametrize("input, expected", [("True", True), ("1", True), ("False", False), ("0", False)])
-    def test_set_value(checkbox_setup, input, expected):
+    @pytest.mark.parametrize("input_value, expected", [("True", True), ("1", True), ("False", False), ("0", False)])
+    def test_set_value(checkbox_setup, input_value, expected):
         if not expected:
             EpamJDISite.metals_colors_page.cb_water.click()
-        EpamJDISite.metals_colors_page.cb_water.set_value(input)
+        EpamJDISite.metals_colors_page.cb_water.set_value(input_value)
         CommonActionsData.check_action("Water: condition changed to " + str(expected).lower())
 
-    @pytest.mark.parametrize("input", ["true ", "1 ", " false", "0 ", " ", "123", " 1", " 0", "!@#$%^&*",
-                                       "qwdewf", "1qwe", "1qwe", "true123", "123true", "false123", "123false",
-                                       "o", "O", "tr ue", ])
-    def test_set_value_nothing_changes(self, checkbox_setup, input):
+    @pytest.mark.parametrize("input_value", ["true ", "1 ", " false", "0 ", " ", "123", " 1", " 0", "!@#$%^&*",
+                                             "qwdewf", "1qwe", "1qwe", "true123", "123true", "false123", "123false",
+                                             "o", "O", "tr ue", ])
+    def test_set_value_nothing_changes(self, checkbox_setup, input_value):
         self.check_box.click()
-        self.check_box.set_value(input)
+        self.check_box.set_value(input_value)
         CommonActionsData.check_action(MSG_TRUE)
         self.check_box.click()
-        self.check_box.set_value(input)
+        self.check_box.set_value(input_value)
         CommonActionsData.check_action(MSG_FALSE)
 
     def test_check_single(self, checkbox_setup):
