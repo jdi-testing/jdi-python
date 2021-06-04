@@ -63,13 +63,14 @@ class GetElementModule:
         try:
             if element.get_parent() is None and element.avatar.frame_locator is None:
                 return self.get_driver().switch_to.default_content()
-        except:
+        except AttributeError as e:
+            print(e)
             return driver
-
         try:
             if element.avatar.has_web_element():
                 return element.get_web_element
-        except:
+        except AttributeError as e:
+            print(e)
             return driver
         locator = element.get_locator()
         if WebDriverByUtils.contains_root(locator):

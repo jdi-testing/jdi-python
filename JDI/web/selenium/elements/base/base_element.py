@@ -42,17 +42,5 @@ class BaseElement:
     def get_locator(self):
         return self.avatar.by_locator
 
-    def __str__(self):
-        s = "Name " + self.__class__.__name__
-        if "by_locator" in dir(self.avatar):
-            if self.avatar.by_locator is not None:
-                s += "; Locator: %s:'%s'" % (self.avatar.by_locator[0], self.avatar.by_locator[1])
-        if self.parent is not None:
-            if "avatar" in dir(self.parent):
-                if self.parent.avatar.by_locator is not None:
-                    s += "; Parent: %s:'%s'" % (self.parent.avatar.by_locator[0], self.parent.avatar.by_locator[1])
-
-        return s
-
     def has_locator(self):
         return self.avatar.has_locator()
