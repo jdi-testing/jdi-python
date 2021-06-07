@@ -6,6 +6,7 @@ chardet==4.0.0
 click==7.1.2
 colorama==0.4.4
 comtypes==1.1.8
+ddt==1.4.1
 flake8==3.8.4
 idna==2.10
 isort==5.7.0
