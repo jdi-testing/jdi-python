@@ -71,20 +71,19 @@ class GetElementModule:
                 return element.get_web_element
         except AttributeError as e:
             print(e)
-            return driver
         locator = element.get_locator()
         if WebDriverByUtils.contains_root(locator):
             search_context = self.get_driver().switch_to.default_content()
             locator = WebDriverByUtils.trim_root(locator)
-        else:
-            return driver
 
         frame = element.avatar.frame_locator
         if frame:
             self.switch_to_last_opened_window()
             res = search_context.find_element(element.avatar.frame_locator[0], element.avatar.frame_locator[1])
             driver.switch_to.frame(res)
-        return search_context.find_element(locator[0], locator[1]) if locator else search_context
+            return search_context.find_element(locator[0], locator[1]) if locator else search_context
+        else:
+            return driver
 
     def switch_to_last_opened_window(self):
         self.get_driver().switch_to.window(self.get_driver().window_handles[-1])
