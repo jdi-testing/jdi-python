@@ -1,5 +1,4 @@
 ddt==1.4.1
 pywin32==300
 selenium==3.141.0
-urllib3==1.26.5
 requests==2.25.1
