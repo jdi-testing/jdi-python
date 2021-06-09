@@ -1,5 +1,4 @@
 import pytest
-
 from selenium.webdriver.common.by import By
 
 from JDI.core.settings.jdi_settings import JDISettings
