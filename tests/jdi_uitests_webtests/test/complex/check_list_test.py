@@ -1,7 +1,4 @@
-import unittest
-
 import pytest
-from ddt import data, ddt
 from selenium.webdriver.common.by import By
 
 from JDI.core.settings.jdi_settings import JDISettings
@@ -10,65 +7,64 @@ from tests.jdi_uitests_webtests.main.enums.entities import Nature
 from tests.jdi_uitests_webtests.main.enums.preconditions import Preconditions
 from tests.jdi_uitests_webtests.main.page_objects.epam_jdi_site import EpamJDISite
 from tests.jdi_uitests_webtests.main.utils.common_action_data import CommonActionsData
-from tests.jdi_uitests_webtests.test.init_tests import InitTests
 
 FIRE_MSG = "Fire: condition changed to true"
 WATER_MSG = "Water: condition changed to true"
 
 
+@pytest.fixture
+def check_list_setup(site):
+    Preconditions.METALS_AND_COLORS_PAGE.is_in_state()
+
+
 @pytest.mark.web
-@ddt
-class CheckListTests(InitTests):
+class TestCheckList:
     nature_options = ["Water", "Earth", "Wind", "Fire"]
     all_values = "Water, Earth, Wind, Fire"
 
     check_list = EpamJDISite.metals_colors_page.nature_check_list
 
-    def setUp(self):
-        super(CheckListTests, self).setUp(self.id().split(".")[-1])
-        Preconditions.METALS_AND_COLORS_PAGE.is_in_state()
-
-    @data("Fire", 4, Nature.FIRE)
-    def test_select(self, value):
+    @pytest.mark.parametrize("value", ("Fire", 4, Nature.FIRE))
+    def test_select(self, check_list_setup, value):
         self.check_list.select(value)
         CommonActionsData.check_action(FIRE_MSG)
 
-    def test_select_2_string(self):
+    def test_select_2_string(self, check_list_setup):
         self.check_list.select("Water", "Fire")
         CommonActionsData.check_action(FIRE_MSG, line_number=0)
         CommonActionsData.check_action(WATER_MSG, line_number=1)
 
-    def test_select_2_index(self):
+    def test_select_2_index(self, check_list_setup):
         self.check_list.select(1, 4)
         CommonActionsData.check_action(FIRE_MSG, line_number=0)
         CommonActionsData.check_action(WATER_MSG, line_number=1)
 
-    def test_select_2_enum(self):
+    def test_select_2_enum(self, check_list_setup):
         self.check_list.select(Nature.WATER, Nature.FIRE)
         CommonActionsData.check_action(FIRE_MSG, line_number=0)
         CommonActionsData.check_action(WATER_MSG, line_number=1)
 
-    @data("Fire", 4, Nature.FIRE)
-    def test_check(self, value):
+    @pytest.mark.parametrize("value", ("Fire", 4, Nature.FIRE))
+    def test_check(self, check_list_setup, value):
         self.check_list.check(value)
         CommonActionsData.check_action(FIRE_MSG)
 
-    def test_check_2_string(self):
+    def test_check_2_string(self, check_list_setup):
         self.check_list.check("Water", "Fire")
         CommonActionsData.check_action(FIRE_MSG, line_number=0)
         CommonActionsData.check_action(WATER_MSG, line_number=1)
 
-    def test_check_2_index(self):
+    def test_check_2_index(self, check_list_setup):
         self.check_list.check(1, 4)
         CommonActionsData.check_action(FIRE_MSG, line_number=0)
         CommonActionsData.check_action(WATER_MSG, line_number=1)
 
-    def test_check_2_enum(self):
+    def test_check_2_enum(self, check_list_setup):
         self.check_list.check(Nature.WATER, Nature.FIRE)
         CommonActionsData.check_action(FIRE_MSG, line_number=0)
         CommonActionsData.check_action(WATER_MSG, line_number=1)
 
-    def test_select_all(self):
+    def test_select_all(self, check_list_setup):
         self.check_list.select_all()
         CommonActionsData.check_action(FIRE_MSG, line_number=0)
         CommonActionsData.check_action("Wind: condition changed to true", line_number=1)
@@ -76,7 +72,7 @@ class CheckListTests(InitTests):
         CommonActionsData.check_action(WATER_MSG, line_number=3)
         self.check_all_checked()
 
-    def test_check_all(self):
+    def test_check_all(self, check_list_setup):
         self.check_list.check_all()
         CommonActionsData.check_action(FIRE_MSG, line_number=0)
         CommonActionsData.check_action("Wind: condition changed to true", line_number=1)
@@ -84,44 +80,44 @@ class CheckListTests(InitTests):
         CommonActionsData.check_action(WATER_MSG, line_number=3)
         self.check_all_checked()
 
-    def test_clear_all(self):
+    def test_clear_all(self, check_list_setup):
         self.check_list.check_all()
         self.check_all_checked()
         self.check_list.clear()
         self.check_all_unchecked()
 
-    def test_uncheck_all(self):
+    def test_uncheck_all(self, check_list_setup):
         self.check_list.check_all()
         self.check_all_checked()
         self.check_list.uncheck_all()
         self.check_all_unchecked()
 
-    def test_get_options(self):
+    def test_get_options(self, check_list_setup):
         Assert.assert_equal(self.check_list.get_options(), self.nature_options)
 
-    def test_get_names(self):
+    def test_get_names(self, check_list_setup):
         Assert.assert_equal(self.check_list.get_names(), self.nature_options)
 
-    def test_get_values(self):
+    def test_get_values(self, check_list_setup):
         Assert.assert_equal(self.check_list.get_values(), self.nature_options)
 
-    def test_get_options_as_text(self):
+    def test_get_options_as_text(self, check_list_setup):
         Assert.assert_equal(self.check_list.get_options_as_text(), self.all_values)
 
-    def test_set_value(self):
+    def test_set_value(self, check_list_setup):
         self.check_list.set_value("Fire")
         CommonActionsData.check_action(FIRE_MSG)
 
-    def test_get_name(self):
+    def test_get_name(self, check_list_setup):
         Assert.assert_equal(self.check_list.get_name(), "nature_check_list")
 
-    def test_are_selected(self):
+    def test_are_selected(self, check_list_setup):
         Assert.assert_equal(self.check_list.are_selected(), [])
 
-    def test_are_deselected(self):
+    def test_are_deselected(self, check_list_setup):
         Assert.assert_equal(self.check_list.are_deselected(), self.nature_options)
 
-    def test_get_value(self):
+    def test_get_value(self, check_list_setup):
         Assert.assert_equal(self.check_list.get_value(), None)
 
     def check_all_checked(self):
@@ -135,7 +131,3 @@ class CheckListTests(InitTests):
         els = driver.find_elements(By.CSS_SELECTOR, value="#elements-checklist input")
         for el in els:
             Assert.assert_true(el.get_attribute("checked") in ["false", None])
-
-
-if __name__ == "__main__":
-    unittest.main()
