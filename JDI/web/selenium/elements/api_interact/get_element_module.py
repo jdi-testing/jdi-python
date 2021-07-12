@@ -14,7 +14,7 @@ class GetElementModule:
         self.frame_locator = None
 
     def get_element(self):
-        return self.web_element if self.web_element is not None else self.__get_element_action()
+        return self.web_element if self.web_element else self.__get_element_action()
 
     def get_elements(self):
         result = self.__search_elements()
@@ -38,13 +38,15 @@ class GetElementModule:
         return self.web_elements if self.web_elements else self.__search_elements()
 
     def __search_elements(self):
-        search_context = self.get_driver() \
-            if WebDriverByUtils.contains_root(self.by_locator) \
-            else self.get_search_context(self.element.parent)
+        if WebDriverByUtils.contains_root(self.by_locator):
+            search_context = self.get_driver()
+        else:
+            search_context = self.get_search_context(self.element.parent)
 
-        locator = WebDriverByUtils.trim_root(self.by_locator) \
-            if WebDriverByUtils.contains_root(self.by_locator) \
-            else self.by_locator
+        if WebDriverByUtils.contains_root(self.by_locator):
+            locator = WebDriverByUtils.trim_root(self.by_locator)
+        else:
+            locator = self.by_locator
 
         if search_context is None:
             search_context = self.get_driver()
@@ -58,36 +60,29 @@ class GetElementModule:
         driver = self.get_driver()
         if element is None:
             return driver
-        from JDI.web.selenium.elements.composite.web_site import WebSite
         try:
-            if isinstance(element, WebSite) or isinstance(element.get_parent(), WebSite):
-                return driver
-        except: pass
+            if element.get_parent() is None and element.avatar.frame_locator is None:
+                return self.get_driver().switch_to.default_content()
+        except AttributeError as e:
+            print(e)
+            return driver
         try:
-            if issubclass(element, WebSite) or issubclass(element.get_parent(), WebSite):
-                return driver
-        except: pass
-        from JDI.web.selenium.elements.base.base_element import BaseElement
-        from JDI.web.selenium.elements.base.element import Element
-        if (element is None or type(element) is BaseElement) or \
-                (element.get_parent() is None and element.avatar.frame_locator is None):
-            return self.get_driver().switch_to.default_content()
-        if type(element) is Element and element.avatar.has_web_element():
-            return element.get_web_element
+            if element.avatar.has_web_element():
+                return element.get_web_element
+        except AttributeError as e:
+            print(e)
         locator = element.get_locator()
-        search_context = self.get_driver().switch_to.default_content() \
-            if WebDriverByUtils.contains_root(locator) \
-            else self.get_search_context(element.get_parent())
-        locator = WebDriverByUtils.trim_root(locator) \
-            if WebDriverByUtils.contains_root(locator) \
-            else locator
-
+        if WebDriverByUtils.contains_root(locator):
+            search_context = self.get_driver().switch_to.default_content()
+            locator = WebDriverByUtils.trim_root(locator)
+        else:
+            search_context = self.get_search_context(element.get_parent())
         frame = element.avatar.frame_locator
-        if frame is not None:
+        if frame:
             self.switch_to_last_opened_window()
             res = search_context.find_element(element.avatar.frame_locator[0], element.avatar.frame_locator[1])
             driver.switch_to.frame(res)
-        return search_context.find_element(locator[0], locator[1]) if locator is not None else search_context
+        return search_context.find_element(locator[0], locator[1]) if locator else search_context
 
     def switch_to_last_opened_window(self):
         self.get_driver().switch_to.window(self.get_driver().window_handles[-1])
@@ -96,7 +91,7 @@ class GetElementModule:
         self.web_element = web_element
 
     def has_locator(self):
-        return self.by_locator is not None
+        return self.by_locator
 
     def has_we_element(self):
-        return self.web_element is not None
+        return self.web_element
