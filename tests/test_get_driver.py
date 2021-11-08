@@ -13,10 +13,10 @@ class TestChrome:
         assert os.path.exists("chromedriver.exe") is True
 
     def test_get_last_release(self):
-        assert get_driver.get_last_release() == "91.0.4472.19"
+        assert get_driver.get_last_release() != ""
 
     def test_get_last_release_for_build(self):
-        assert get_driver.get_last_release(build="91") == "91.0.4472.19"
+        assert get_driver.get_last_release(build="91").startswith("91.")
 
     def test_compose_driver_download_link(self):
         assert (
