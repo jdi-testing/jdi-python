@@ -18,7 +18,7 @@ pycodestyle==2.6.0
 pyflakes==2.2.0
 pylint==2.6.0
 pyperclip==1.8.1
-pywin32==301
+pywin32==302
 regex==2020.11.13
 requests==2.25.1
 selenium==3.141.0
