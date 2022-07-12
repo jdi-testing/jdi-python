@@ -1,5 +1,4 @@
 import logging
-import unittest
 
 import pytest
 
@@ -14,7 +13,7 @@ logger = logging.getLogger(__name__)
 
 
 @pytest.fixture(scope="class")
-def site():
+def epam_site():
     WebSite.init(EpamJDISite)
     logger.info("Run Tests from '{}' file".format(__name__))
     EpamJDISite.home_page.open()

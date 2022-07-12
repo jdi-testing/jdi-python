@@ -34,6 +34,6 @@ def compose_download_link(build) -> str:
 
 
 if __name__ == "__main__":
-    release = get_last_release("87.0.4280")
+    release = get_last_release("90.0.4430")
     download_link = compose_download_link(build=release)
     download_driver(download_link)
