@@ -9,7 +9,7 @@ from tests.jdi_uitests_webtests.test.init_tests import InitTests
 @pytest.mark.web
 class ImageTests(InitTests):
     ALT = "ALT"
-    SRC = "https://jdi-framework.github.io/tests/images/Logo_Epam_Color.svg"
+    SRC = "https://jdi-testing.github.io/jdi-light/images/Logo_Epam_Color.svg"
 
     clickable_item = EpamJDISite.home_page.logo_image
 

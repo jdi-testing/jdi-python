@@ -70,27 +70,27 @@ class WebPage(BaseElement):
         self.get_driver().get(self.url)
 
     def verify_opened(self):
-        result = False
+        url_check_passed = False
         if self.check_url_type == CheckPageTypes.EQUAL:
-            result = self.check_url()
+            url_check_passed = self.check_url()
         elif self.check_url_type == CheckPageTypes.MATCH:
-            result = self.match_url()
+            url_check_passed = self.match_url()
         elif self.check_url_type == CheckPageTypes.CONTAINS:
-            result = self.contains_url()
-        if not result:
+            url_check_passed = self.contains_url()
+
+        if not url_check_passed:
             return False
 
         if self.title is None:
             return True
 
-        if self.check_title_type == CheckPageTypes.EQUAL:
-            return self.check_title()
-        if self.check_title_type == CheckPageTypes.MATCH:
-            return self.match_title()
-        if self.check_title_type == CheckPageTypes.CONTAINS:
-            return self.contains_title()
-
-        return False
+        title_check_methods = {
+            CheckPageTypes.EQUAL: self.check_title,
+            CheckPageTypes.MATCH: self.match_title,
+            CheckPageTypes.CONTAINS: self.contains_title
+        }
+        title_check_method = title_check_methods.get(self.check_title_type, lambda: False)
+        return title_check_method()
 
     def should_be_opened(self):
         try:

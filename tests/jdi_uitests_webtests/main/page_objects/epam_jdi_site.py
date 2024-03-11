@@ -17,7 +17,7 @@ from tests.jdi_uitests_webtests.main.page_objects.sections.header import Header
 
 class EpamJDISite(WebSite):
     # pages
-    home_page = HomePage(url=Preconditions.HOME_PAGE.value, title="Index Page")
+    home_page = HomePage(url=Preconditions.HOME_PAGE.value, title="Home Page")
     metals_colors_page = MetalColorPage(url=Preconditions.METALS_AND_COLORS_PAGE.value,
                                         title="Metal and Colors")
     contact_form_page = ContactFormPage(url=Preconditions.CONTACT_PAGE.value,
