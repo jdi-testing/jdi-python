@@ -17,4 +17,5 @@ Before you begin:
 1. inside your IDE
 2. using pytest
  - activate your virtual environment by running `source venv/bin/activate` on MacOs or `venv\Scripts\activate` on Windows
- - run `pytest` in the terminal
+ - run `pytest` in the terminal (eg. `pytest ./tests/jdi_uitests_webtests/test/common/`       - to run all tests in the specified directory)
+ - be sure that you are in a project root directory when running the command
