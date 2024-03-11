@@ -1,19 +1,20 @@
+import os
+from pathlib import Path, PurePath
 import logging
-from pathlib import Path
 
-logger = logging.Logger(__name__)
-
+logger = logging.getLogger(__name__)
 
 class PropertyPath:
     def __init__(self, filename="jdi.properties"):
-        self._filename = Path(filename)
+        project_root = Path(__file__).parents[3]
+        self._filename = project_root / filename
 
     def get_property_file(self):
-        logger.info("Directory to search {dir_to_search}".format(dir_to_search=self._filename))
+        logger.info(f"Directory to search {self._filename.parent}")
         if self._filename.exists():
             return self._filename
         else:
-            raise FileNotFoundError("There is not property file with name '" + self._filename + "' in your project")
+            raise FileNotFoundError(f"There is no property file with name '{self._filename}' in your project")
 
 
 class JDISettings:

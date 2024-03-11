@@ -1,6 +1,7 @@
 from JDI.web.selenium.elements.api_interact.find_element_by import By
 from JDI.web.selenium.elements.complex.text_list import TextList
 from JDI.web.selenium.elements.composite.web_site import WebSite
+from tests.jdi_uitests_webtests.main.enums.preconditions import Preconditions
 from tests.jdi_uitests_webtests.main.page_objects.pages import (
     ContactFormPage,
     DatesPage,
@@ -16,12 +17,15 @@ from tests.jdi_uitests_webtests.main.page_objects.sections.header import Header
 
 class EpamJDISite(WebSite):
     # pages
-    home_page = HomePage(url="/index.htm", title="Index Page")
-    metals_colors_page = MetalColorPage(url="/page2.htm", title="Metal and Colors")
-    contact_form_page = ContactFormPage(url="/page1.htm", title="Contact Form")
-    support_page = SupportPage(url="/page3.htm", title="Support")
-    dates_page = DatesPage(url="/page4.htm", title="Simple Table")
-    simple_table_page = SimpleTablePage(url="/page6.htm", title="Simple Table")
+    home_page = HomePage(url=Preconditions.HOME_PAGE.value, title="Index Page")
+    metals_colors_page = MetalColorPage(url=Preconditions.METALS_AND_COLORS_PAGE.value,
+                                        title="Metal and Colors")
+    contact_form_page = ContactFormPage(url=Preconditions.CONTACT_PAGE.value,
+                                        title="Contact Form")
+    support_page = SupportPage(url=Preconditions.SUPPORT_PAGE.value, title="Support")
+    dates_page = DatesPage(url=Preconditions.DATES_PAGE.value, title="Simple Table")
+    simple_table_page = SimpleTablePage(url=Preconditions.SIMPLE_TABLE_PAGE.value,
+                                        title="Simple Table")
 
     # elements
     actions_log = TextList(By.css(".logs li"))
