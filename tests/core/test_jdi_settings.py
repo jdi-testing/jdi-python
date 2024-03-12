@@ -15,6 +15,6 @@ class TestPropertyPath:
         p = PropertyPath("test.txt")
         assert p._filename.name == "test.txt"
 
+    @pytest.mark.skipif(os.getcwd() == os.path.dirname(__file__), reason="Tests require current directory to be the same as the test directory")
     def test_get_property_file(self):
-        print(os.getcwd())
-        assert PropertyPath().get_property_file() == Path("jdi.properties")
+        assert PropertyPath().get_property_file() == Path("jdi.properties").absolute()
