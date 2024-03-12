@@ -37,6 +37,10 @@ jobs:
       run: |
         pytest -v --cov=. --cov-config=.coveragerc --cov-report=html -m unit
       shell: cmd
+    - name: Run tests excluding unit tests
+      run: |
+        pytest -v -m "not unit"
+      shell: cmd
     - name: Save debug log file
       uses: actions/upload-artifact@v2
       with:
