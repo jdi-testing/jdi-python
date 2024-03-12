@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 import pytest
@@ -15,4 +16,5 @@ class TestPropertyPath:
         assert p._filename.name == "test.txt"
 
     def test_get_property_file(self):
+        print(os.getcwd())
         assert PropertyPath().get_property_file() == Path("jdi.properties")
