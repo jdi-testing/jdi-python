@@ -1,5 +1,3 @@
-from JDI.web.selenium.elements.api_interact.find_element_by import By
-from JDI.web.selenium.elements.complex.table.table import Table
 from JDI.web.selenium.elements.composite.web_page import WebPage
 
 
