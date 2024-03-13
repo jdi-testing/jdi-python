@@ -10,6 +10,7 @@ from tests.jdi_uitests_webtests.main.page_objects.pages import (
     MetalColorPage,
     SupportPage,
 )
+from tests.jdi_uitests_webtests.main.page_objects.pages.search_page import SearchPage
 from tests.jdi_uitests_webtests.main.page_objects.pages.simple_table_page import SimpleTablePage
 from tests.jdi_uitests_webtests.main.page_objects.sections.footer import Footer
 from tests.jdi_uitests_webtests.main.page_objects.sections.header import Header
@@ -23,8 +24,10 @@ class EpamJDISite(WebSite):
     contact_form_page = ContactFormPage(url=Preconditions.CONTACT_PAGE.value,
                                         title="Contact Form")
     support_page = SupportPage(url=Preconditions.SUPPORT_PAGE.value, title="Support")
-    dates_page = DatesPage(url=Preconditions.DATES_PAGE.value, title="Simple Table")
+    dates_page = DatesPage(url=Preconditions.DATES_PAGE.value, title="Dates")
     simple_table_page = SimpleTablePage(url=Preconditions.SIMPLE_TABLE_PAGE.value,
+                                        title="Simple Table")
+    search_page = SearchPage(url=Preconditions.SEARCH_PAGE.value,
                                         title="Simple Table")
 
     # elements

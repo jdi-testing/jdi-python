@@ -13,6 +13,7 @@ class Preconditions(str, Enum):
     SUPPORT_PAGE = ("/support.html",)
     DATES_PAGE = "/dates.html"
     SIMPLE_TABLE_PAGE = "/simple-table.html"
+    SEARCH_PAGE = "/search.html"
 
     def is_in_state(self):
         str_value = self.value[0] if isinstance(self.value, tuple) else self.value
