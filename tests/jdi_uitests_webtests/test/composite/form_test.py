@@ -5,7 +5,6 @@ from tests.jdi_uitests_webtests.main.entities.contact import Contact
 from tests.jdi_uitests_webtests.main.enums.entities import Buttons
 from tests.jdi_uitests_webtests.main.enums.preconditions import Preconditions
 from tests.jdi_uitests_webtests.main.page_objects.epam_jdi_site import EpamJDISite
-from tests.jdi_uitests_webtests.main.utils.common_action_data import CommonActionsData
 from tests.jdi_uitests_webtests.test.init_tests import InitTests
 
 
@@ -38,7 +37,7 @@ class FormTests(InitTests):
         self.form.submit_form(self.contact.description)
         Assert.assert_equal(
             EpamJDISite.contact_form_page.result.get_text(),
-            "Summary: 3\nDescription: {0}".format(self.contact.description),
+            "Summary: 3\nDescription: {0}\nVegetables:".format(self.contact.description),
         )
 
     def test_verify(self):

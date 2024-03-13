@@ -4,6 +4,8 @@ from JDI.core.logger.jdi_logger import JDILogger
 from JDI.core.settings.jdi_settings import JDISettings
 from JDI.web.selenium.driver.selenium_driver_factory import \
     SeleniumDriverFactory
+from selenium.webdriver.chrome.options import Options as ChromeOptions
+from selenium.webdriver.firefox.options import Options as FirefoxOptions
 
 
 class WebSettings(JDISettings):
@@ -21,6 +23,14 @@ class WebSettings(JDISettings):
 
     @staticmethod
     def use_driver(options=None, capabilities=None, executor=None):
+        if options is None:
+            options = ChromeOptions() if JDISettings.get_setting_by_name(
+                "driver") == "chrome" else FirefoxOptions()
+
+        headless = JDISettings.get_setting_by_name("headless")
+
+        if headless:
+            options.add_argument("--headless")
         driver_name = JDISettings.get_setting_by_name("driver")
         JDISettings._driver_factory = SeleniumDriverFactory()
         WebSettings.set_driver_factory(JDISettings._driver_factory)

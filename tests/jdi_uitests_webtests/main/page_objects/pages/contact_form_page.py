@@ -2,7 +2,6 @@ from JDI.web.selenium.elements.api_interact.find_element_by import By
 from JDI.web.selenium.elements.common.text_area import TextArea
 from JDI.web.selenium.elements.common.text_field import TextField
 from JDI.web.selenium.elements.composite.web_page import WebPage
-from tests.jdi_uitests_webtests.main.entities.contact import Contact
 from tests.jdi_uitests_webtests.main.page_objects.sections.contact_form import ContactForm, ContactFormTwoButtons
 
 
@@ -10,9 +9,9 @@ class ContactFormPage(WebPage):
     def __init__(self, url, title):
         super(ContactFormPage, self).__init__(url=url, title=title)
 
-    description = TextArea(By.id("Description"))
+    description = TextArea(By.id("description"))
 
-    name_text_field = TextField(By.id("Name"))
+    name_text_field = TextField(By.id("first-name"))
 
     contact_form = ContactForm(By.css("main form"))
 

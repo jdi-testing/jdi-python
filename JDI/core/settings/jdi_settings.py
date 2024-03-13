@@ -1,6 +1,5 @@
-import os
-from pathlib import Path, PurePath
 import logging
+from pathlib import Path
 
 logger = logging.getLogger(__name__)
 
@@ -47,7 +46,13 @@ class JDISettings:
     def get_setting_by_name(setting_name):
         if not JDISettings._jdi_settings:
             JDISettings._read_jdi_settings()
-        return JDISettings._jdi_settings.get(setting_name, None)
+        value = JDISettings._jdi_settings.get(setting_name, None)
+        if value.lower() in ("true", "yes", "1"):
+            return True
+        elif value.lower() in ("false", "no", "0"):
+            return False
+        else:
+            return value
 
     @staticmethod
     def get_current_timeout_sec():

@@ -40,7 +40,7 @@ class SeleniumDriverFactory:
             self.capabilities = capabilities
 
     def add_options(self, options):
-        for arg in options:
+        for arg in options.arguments:
             self.options.add_argument(arg)
 
     def register_chrome_driver(self):

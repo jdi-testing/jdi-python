@@ -9,7 +9,7 @@ from JDI.web.selenium.elements.complex.combo_box import ComboBox
 from JDI.web.selenium.elements.complex.dropdown import Dropdown
 from JDI.web.selenium.elements.composite.web_page import WebPage
 from tests.jdi_uitests_webtests.main.page_objects.sections.summary import Summary
-from selenium.webdriver.common.by import By as strategy
+from selenium.webdriver.common.by import By as Strategy
 
 
 class CheckBoxMetalColor(CheckBox):
@@ -17,7 +17,7 @@ class CheckBoxMetalColor(CheckBox):
         driver = JDISettings.get_driver_factory().get_driver()
         return (
             False
-            if driver.find_element(strategy.XPATH, "//*[@id='elements-checklist']//*[*[text()='Water']]/input").get_attribute(
+            if driver.find_element(Strategy.XPATH, "//*[@id='elements-checklist']//*[*[text()='Water']]/input").get_attribute(
                 "checked"
             )
             is None
@@ -27,7 +27,7 @@ class CheckBoxMetalColor(CheckBox):
 
 class CheckListMetalColor(CheckList):
     def is_element_selected(self, el):
-        return el.find_element(strategy.XPATH, "../input").is_selected()
+        return el.find_element(Strategy.XPATH, "../input").is_selected()
 
 
 class ComboBoxMetalColor(ComboBox):
