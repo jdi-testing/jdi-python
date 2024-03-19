@@ -1,9 +1,13 @@
-from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options as ChromeOptions
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.webdriver import WebDriver as ChromeDriver
-from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+from selenium.webdriver.firefox.options import Options as FirefoxOptions
+from selenium.webdriver.firefox.service import Service as FirefoxService
+from selenium.webdriver.firefox.webdriver import WebDriver as FirefoxDriver
 from selenium.webdriver.remote.webdriver import WebDriver as RemoteDriver
+from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.firefox import GeckoDriverManager
 
 from JDI.core.settings.jdi_settings import JDISettings
 from JDI.web.selenium.driver.driver_types import DriverTypes
@@ -25,6 +29,8 @@ class SeleniumDriverFactory:
         else:
             if driver_name == DriverTypes.chrome.name:
                 self.current_driver = self.register_chrome_driver()
+            elif driver_name == DriverTypes.firefox.name:
+                self.current_driver = self.register_firefox_driver()
         return driver_name
 
     def set_driver_options_and_capabilities(self, driver_name, options, capabilities, executor):
@@ -36,6 +42,13 @@ class SeleniumDriverFactory:
                 self.add_options(options)
             if not capabilities and executor is None:
                 self.capabilities = DesiredCapabilities.CHROME
+        elif driver_name == DriverTypes.firefox.name:
+            self.options = FirefoxOptions()
+            self.options.add_argument("-start-maximized")
+            if options:
+                self.add_options(options)
+            if not capabilities and executor is None:
+                self.capabilities = DesiredCapabilities.FIREFOX
         if capabilities:
             self.capabilities = capabilities
 
@@ -45,11 +58,15 @@ class SeleniumDriverFactory:
 
     def register_chrome_driver(self):
         service = Service(ChromeDriverManager().install())
-        return self.__web_driver_settings(ChromeDriver(service=service,
-                                                       options=self.options))
+        return self.__web_driver_settings(ChromeDriver(service=service, options=self.options))
+
+    def register_firefox_driver(self):
+        service = FirefoxService(GeckoDriverManager().install())
+        return self.__web_driver_settings(FirefoxDriver(service=service, options=self.options))
 
     def register_remote_driver(self, executor):
         driver = self.__web_driver_settings(RemoteDriver(command_executor=executor,
+                                                         desired_capabilities=self.capabilities,
                                                          options=self.options,
                                                          keep_alive=True))
         return driver

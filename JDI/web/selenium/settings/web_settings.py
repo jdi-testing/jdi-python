@@ -1,3 +1,5 @@
+import sys
+
 from selenium.webdriver.remote.command import Command
 
 from JDI.core.logger.jdi_logger import JDILogger
@@ -31,7 +33,11 @@ class WebSettings(JDISettings):
 
         if headless:
             options.add_argument("--headless")
-        driver_name = JDISettings.get_setting_by_name("driver")
+
+        driver_name = next(
+            (arg.split("=")[1] for arg in sys.argv if arg.startswith("--browser")),
+            JDISettings.get_setting_by_name("driver"))
+
         JDISettings._driver_factory = SeleniumDriverFactory()
         WebSettings.set_driver_factory(JDISettings._driver_factory)
         return JDISettings._driver_factory.register_driver(driver_name, options, capabilities, executor)

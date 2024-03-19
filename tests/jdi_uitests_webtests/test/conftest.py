@@ -13,10 +13,9 @@ logger = logging.getLogger(__name__)
 @pytest.fixture(scope="class")
 def site():
     WebSite.init(EpamJDISite)
-    logger.info("Run Tests from '{}' file".format(__name__))
+    logger.info(f"Run Tests from '{__name__}' file, browser: {WebSettings.get_driver_factory().current_driver.name}")
     EpamJDISite.home_page.open()
     EpamJDISite.login_page.submit(User.default())
-    print(WebSettings.get_driver_factory().current_driver.name)
 
     yield
 
