@@ -16,6 +16,7 @@ def site():
     logger.info("Run Tests from '{}' file".format(__name__))
     EpamJDISite.home_page.open()
     EpamJDISite.login_page.submit(User.default())
+    print(WebSettings.get_driver_factory().current_driver.name)
 
     yield
 

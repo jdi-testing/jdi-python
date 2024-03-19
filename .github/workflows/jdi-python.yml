@@ -16,6 +16,7 @@ jobs:
     strategy:
       matrix:
         python-version: ['3.11']
+        browser: [chrome, firefox]
 
     steps:
     - uses: actions/checkout@v4
@@ -31,12 +32,9 @@ jobs:
       run: |
         pytest -v --cov=. --cov-config=.coveragerc --cov-report=html -m unit
       shell: bash
-    - name: Run tests excluding unit tests chrome
+    - name: Run tests excluding 'unit' tests on ${{ matrix.browser }}
       run: |
-        pytest -v -m "not unit" --browser chrome
-    - name: Run tests excluding unit tests firefox
-      run: |
-        pytest -v -m "not unit" --browser firefox
+        pytest -v -m "not unit" --browser ${{ matrix.browser }}
       shell: bash
     - name: Save debug log file
       uses: actions/upload-artifact@v4
