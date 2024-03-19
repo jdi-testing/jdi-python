@@ -42,7 +42,7 @@ jobs:
         pytest -v -m "not unit"
       shell: cmd
     - name: Save debug log file
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: logs
         path: debug.log
