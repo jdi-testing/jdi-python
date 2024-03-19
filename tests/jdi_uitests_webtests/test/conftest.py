@@ -9,8 +9,13 @@ from tests.jdi_uitests_webtests.main.entities.user import User
 from tests.jdi_uitests_webtests.main.page_objects.epam_jdi_site import EpamJDISite
 from tests.jdi_uitests_webtests.main.page_objects.w3c_site.w3c_site import W3cSite
 
-
 logger = logging.getLogger(__name__)
+
+
+# conftest.py
+def pytest_addoption(parser):
+    parser.addoption("--browser", action="store", default="chrome",
+                     help="Type of browser: chrome or firefox")
 
 
 @pytest.fixture(scope="class")
