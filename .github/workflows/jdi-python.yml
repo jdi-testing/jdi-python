@@ -31,9 +31,12 @@ jobs:
       run: |
         pytest -v --cov=. --cov-config=.coveragerc --cov-report=html -m unit
       shell: bash
-    - name: Run tests excluding unit tests
+    - name: Run tests excluding unit tests chrome
       run: |
-        pytest -v -m "not unit"
+        pytest -v -m "not unit" --browser chrome
+    - name: Run tests excluding unit tests firefox
+      run: |
+        pytest -v -m "not unit" --browser firefox
       shell: bash
     - name: Save debug log file
       uses: actions/upload-artifact@v4
