@@ -34,7 +34,7 @@ jobs:
     - name: Run unit tests
       run: |
         pytest -v --cov=. --cov-config=.coveragerc --cov-report=html -m unit
-      shell: cmd
+      shell: bash
     - name: Run tests excluding unit tests
       run: |
         pytest -v -m "not unit"
