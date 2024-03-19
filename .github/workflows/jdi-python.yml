@@ -34,7 +34,7 @@ jobs:
       shell: bash
     - name: Run tests excluding 'unit' tests on ${{ matrix.browser }}
       run: |
-        pytest -v -m "not unit" --browser ${{ matrix.browser }}
+        pytest -v -m "not unit" --browser=${{ matrix.browser }}
       shell: bash
     - name: Save debug log file
       uses: actions/upload-artifact@v4
