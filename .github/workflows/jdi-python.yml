@@ -12,7 +12,7 @@ on:
 jobs:
   build:
 
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     strategy:
       matrix:
         python-version: ['3.11']
@@ -20,7 +20,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
@@ -32,7 +32,6 @@ jobs:
       run: |
         cd utils
         python get_driver.py
-    # TODO: use virtual machine for tests run
     - name: Run unit tests
       run: |
         pytest -v --cov=. --cov-config=.coveragerc --cov-report=html -m unit
