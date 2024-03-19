@@ -1,10 +1,6 @@
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium import webdriver
-
-def setup_chrome_driver():
-    driver = webdriver.Chrome(ChromeDriverManager().install())
-    return driver
+from JDI.web.selenium.driver.selenium_driver_factory import SeleniumDriverFactory
 
 if __name__ == "__main__":
-    driver = setup_chrome_driver()
+    driver_factory = SeleniumDriverFactory()
+    driver = driver_factory.get_driver()
     driver.quit()
