@@ -9,9 +9,9 @@ class ContactForm(Form):
     def __init__(self, by_locator=None):
         super(ContactForm, self).__init__(by_locator)
 
-    first_name = TextField(By.id("Name"))
-    last_name = TextField(By.id("LastName"))
-    description = TextArea(By.id("Description"))
+    first_name = TextField(By.id("first-name"))
+    last_name = TextField(By.id("last-name"))
+    description = TextArea(By.id("description"))
 
     submit = Button(By.xpath("//*[text()='Submit']"))
 
@@ -23,9 +23,9 @@ class ContactFormTwoButtons(Form):
     def __init__(self, by_locator=None):
         super(ContactFormTwoButtons, self).__init__(by_locator)
 
-    first_name = TextField(By.id("Name"))
-    last_name = TextField(By.id("LastName"))
-    description = TextArea(By.id("Description"))
+    first_name = TextField(By.id("first-name"))
+    last_name = TextField(By.id("last-name"))
+    description = TextArea(By.id("description"))
 
     submit = Button(By.xpath("//*[text()='Submit']"))
     calculate = Button(By.xpath("//*[text()='Calculate']"))

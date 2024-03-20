@@ -5,6 +5,6 @@ class Contact:
         self.description = description
 
     def __str__(self):
-        return "Summary: 3\nName: {0}\nLast Name: {1}\nDescription: {2}".format(
-            self.first_name, self.last_name, self.description
+        return "Summary: 3\nLast Name: {0}\nDescription: {1}\nVegetables:".format(
+            self.last_name, self.description
         )

@@ -9,7 +9,7 @@ class Nature(Enum):
 
 
 class Metals(Enum):
-    COL = "Col"
+    METALS = "Metals"
     GOLD = "Gold"
     SILVER = "Silver"
     BRONZE = "Bronze"

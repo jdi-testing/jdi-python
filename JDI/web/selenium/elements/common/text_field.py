@@ -11,7 +11,7 @@ class TextField(Text):
     def input(self, text):
         self.input_action(text)
 
-    def input_action(self,text):
+    def input_action(self, text):
         self.get_web_element().send_keys(text)
 
     @scenario(action_name="Send keys to the element")

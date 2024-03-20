@@ -6,13 +6,14 @@ from JDI.core.settings.jdi_settings import JDISettings
 from JDI.web.selenium.preconditions.web_preconditions import WebPreconditions
 
 
-class Preconditions(Enum):
-    HOME_PAGE = ("/index.htm",)
-    CONTACT_PAGE = ("/page1.htm",)
-    METALS_AND_COLORS_PAGE = ("/page2.htm",)
-    SUPPORT_PAGE = ("/page3.htm",)
-    DATES_PAGE = "/page4.htm"
-    SIMPLE_TABLE_PAGE = "/page6.htm"
+class Preconditions(str, Enum):
+    HOME_PAGE = ("/index.html",)
+    CONTACT_PAGE = ("/contacts.html",)
+    METALS_AND_COLORS_PAGE = ("/metals-colors.html",)
+    SUPPORT_PAGE = ("/support.html",)
+    DATES_PAGE = "/dates.html"
+    SIMPLE_TABLE_PAGE = "/simple-table.html"
+    SEARCH_PAGE = "/search.html"
 
     def is_in_state(self):
         str_value = self.value[0] if isinstance(self.value, tuple) else self.value

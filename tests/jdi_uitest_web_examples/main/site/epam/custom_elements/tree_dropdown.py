@@ -2,6 +2,7 @@ from enum import Enum
 
 from JDI.web.selenium.elements.complex.base_selector import BaseSelector
 from JDI.web.selenium.elements.complex.dropdown import Dropdown
+from selenium.webdriver.common.by import By as Strategy
 
 
 class TreeDropdown(Dropdown):
@@ -27,5 +28,5 @@ class TreeDropdown(Dropdown):
             el.set_parent(self)
 
             web_el = el.get_element(split[i])
-            if "dropdown-invisible-group" not in web_el.find_element_by_xpath("..").get_attribute("class"):
+            if "dropdown-invisible-group" not in web_el.find_element(Strategy.XPATH, "..").get_attribute("class"):
                 web_el.click()

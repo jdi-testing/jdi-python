@@ -13,4 +13,4 @@ class SearchTests(InitTests):
 
     def test_fill(self):
         EpamJDISite.header.search_section.find("something")
-        EpamJDISite.support_page.check_opened()
+        EpamJDISite.search_page.check_opened()

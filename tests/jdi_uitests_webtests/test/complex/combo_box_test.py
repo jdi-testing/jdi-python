@@ -11,8 +11,8 @@ from tests.jdi_uitests_webtests.test.init_tests import InitTests
 @pytest.mark.web
 class ComboBoxTests(InitTests):
 
-    add_options = ["Col", "Gold", "Silver", "Bronze", "Selen"]
-    add_options_string = "Col, Gold, Silver, Bronze, Selen"
+    add_options = ["Metals", "Gold", "Silver", "Bronze", "Selen"]
+    add_options_string = "Metals, Gold, Silver, Bronze, Selen"
 
     combo_box = EpamJDISite.metals_colors_page.combo_box
 
@@ -59,10 +59,10 @@ class ComboBoxTests(InitTests):
         )
 
     def test_is_selected(self):
-        Assert.assert_equal(self.combo_box.is_selected("Col"), True)
+        Assert.assert_equal(self.combo_box.is_selected("Metals"), True)
 
     def test_is_selected_enum(self):
-        Assert.assert_equal(self.combo_box.is_selected(Metals.COL), True)
+        Assert.assert_equal(self.combo_box.is_selected(Metals.METALS), True)
 
     def test_get_value(self):
-        Assert.assert_equal(self.combo_box.get_value(), "Col")
+        Assert.assert_equal(self.combo_box.get_value(), "Metals")

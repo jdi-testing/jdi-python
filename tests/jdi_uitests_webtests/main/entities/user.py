@@ -1,4 +1,4 @@
-import os
+from JDI.core.settings.jdi_settings import JDISettings
 
 
 class User:
@@ -7,8 +7,5 @@ class User:
         return User()
 
     def __init__(self):
-        self.login = "epam"
-        self.password = os.getenv("TEST_PASSWORD")
-        self.name = "Name"
-        self.last_name = "Last Name"
-        self.description = "Description"
+        self.login = JDISettings.get_setting_by_name("user")
+        self.password = JDISettings.get_setting_by_name("password")

@@ -7,9 +7,9 @@ from JDI.web.selenium.elements.composite.form import Form
 
 class Login(Form):
 
-    login = TextField(By.id("Login"))
+    login = TextField(By.id("name"))
 
-    password = TextField(By.id("Password"))
+    password = TextField(By.id("password"))
 
     button = Button(By.css(".btn-login"))
 

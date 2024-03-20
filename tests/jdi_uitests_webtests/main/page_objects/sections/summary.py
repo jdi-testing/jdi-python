@@ -5,6 +5,7 @@ from JDI.web.selenium.elements.api_interact.find_element_by import By
 from JDI.web.selenium.elements.complex.radio_buttons import RadioButtons
 from JDI.web.selenium.elements.complex.selector import Selector
 from JDI.web.selenium.elements.composite.section import Section
+from selenium.webdriver.common.by import By as Strategy
 
 ERROR_MSG = "No elements selected. Override getSelectedAction or place locator to <select> tag"
 
@@ -18,11 +19,11 @@ class SelectElements(metaclass=ABCMeta):
         element = list(filter(lambda x: x.is_selected(), self.get_input_web_elements()))
         if len(element) == 0:
             raise ValueError(ERROR_MSG)
-        return element[0].find_element_by_xpath("..").text
+        return element[0].find_element(Strategy.XPATH, "..").text
 
     def is_selected_action(self, element) -> bool:
         actual_text = (
-            list(filter(lambda x: x.is_selected(), self.get_input_web_elements()))[0].find_element_by_xpath("..").text
+            list(filter(lambda x: x.is_selected(), self.get_input_web_elements()))[0].find_element(Strategy.XPATH, "..").text
         )
         if isinstance(element, str):
             return actual_text == element
@@ -40,14 +41,14 @@ class SelectElements(metaclass=ABCMeta):
 class RadioButtonsSummary(SelectElements, RadioButtons):
     def get_input_web_elements(self):
         return list(
-            map(lambda el: el.find_element_by_tag_name("input"), super(RadioButtonsSummary, self).get_web_elements())
+            map(lambda el: el.find_element(Strategy.TAG_NAME, "input"), super(RadioButtonsSummary, self).get_web_elements())
         )
 
 
 class SelectorSummary(SelectElements, Selector):
     def get_input_web_elements(self):
         return list(
-            map(lambda el: el.find_element_by_tag_name("input"), super(SelectorSummary, self).get_web_elements())
+            map(lambda el: el.find_element(Strategy.TAG_NAME, "input"), super(SelectorSummary, self).get_web_elements())
         )
 
 

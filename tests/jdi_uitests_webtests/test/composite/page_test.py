@@ -27,7 +27,7 @@ class PageTests(unittest.TestCase):
 
     def test_refresh(self):
         EpamJDISite.contact_form_page.contact_form.submit.click()
-        Assert.assert_equal(EpamJDISite.contact_form_page.result.get_text(), "Summary: 3")
+        Assert.assert_equal(EpamJDISite.contact_form_page.result.get_text(), "Summary: 3\nVegetables:")
         EpamJDISite.contact_form_page.refresh()
         Assert.assert_equal(EpamJDISite.contact_form_page.result.get_text(), "")
         EpamJDISite.contact_form_page.check_opened()

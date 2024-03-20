@@ -1,19 +1,19 @@
 import logging
 from pathlib import Path
 
-logger = logging.Logger(__name__)
-
+logger = logging.getLogger(__name__)
 
 class PropertyPath:
     def __init__(self, filename="jdi.properties"):
-        self._filename = Path(filename)
+        project_root = Path(__file__).parents[3]
+        self._filename = project_root / filename
 
     def get_property_file(self):
-        logger.info("Directory to search {dir_to_search}".format(dir_to_search=self._filename))
+        logger.info(f"Directory to search {self._filename.parent}")
         if self._filename.exists():
             return self._filename
         else:
-            raise FileNotFoundError("There is not property file with name '" + self._filename + "' in your project")
+            raise FileNotFoundError(f"There is no property file with name '{self._filename}' in your project")
 
 
 class JDISettings:
@@ -46,7 +46,13 @@ class JDISettings:
     def get_setting_by_name(setting_name):
         if not JDISettings._jdi_settings:
             JDISettings._read_jdi_settings()
-        return JDISettings._jdi_settings.get(setting_name, None)
+        value = JDISettings._jdi_settings.get(setting_name, None)
+        if value.lower() in ("true", "yes", "1"):
+            return True
+        elif value.lower() in ("false", "no", "0"):
+            return False
+        else:
+            return value
 
     @staticmethod
     def get_current_timeout_sec():
